@@ -33,7 +33,7 @@ function verificar() {
             localStorage.setItem('usuario', JSON.stringify(datos.usuario));
             localStorage.setItem('contraseña', JSON.stringify(datos.contraseña));
             localStorage.setItem('estado', JSON.stringify(datos.estado));
-            window.location.href = 'index.html';
+            window.location.href = '/index.html';
 
         } else {
             datos.usuario = usuario.value;
@@ -43,7 +43,7 @@ function verificar() {
             sessionStorage.setItem('usuario', JSON.stringify(datos.usuario));
             sessionStorage.setItem('contraseña', JSON.stringify(contraseña.value));
             sessionStorage.setItem('estado', JSON.stringify(datos.estado));
-            window.location.href = 'index.html';
+            window.location.href = '/index.html';
         }
     }
 
@@ -64,7 +64,7 @@ function recordarUsuario() {
 var conectado = function() {
     let estado = JSON.parse(localStorage.getItem('estado'));
     if (estado === 'conectado') {
-        window.location.href = 'index.html';
+        window.location.href = '/index.html';
     }
 };
 
