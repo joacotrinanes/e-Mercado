@@ -7,7 +7,7 @@ var recordar = false;
 var datos = {};
 
 // Google Access
-var googleName = null;
+//var googleName = null;
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -15,13 +15,13 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
-    googleName = localStorage.setItem('googleName', JSON.stringify(profile.getName()));
+    localStorage.setItem('googleName', JSON.stringify(profile.getName()));
     window.location.href = 'index.html';
 
 };
 
 
-
+var googleUser = localStorage.getItem('googleName');
 
 /* Control de usuario y contraseña*/
 
