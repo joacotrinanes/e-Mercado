@@ -103,9 +103,6 @@ function onSignIn(googleUser) {
     datos.contraseña = 'google';
     datos.estado = 'conectado';
 
-    sessionStorage.setItem('usuario', JSON.stringify(datos.usuario));
-    sessionStorage.setItem('contraseña', JSON.stringify(datos.contraseña));
-    sessionStorage.setItem('estado', JSON.stringify(datos.estado));
     window.location.href = 'index.html';
 
 };
