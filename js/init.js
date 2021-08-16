@@ -54,27 +54,14 @@ var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
 var desconectar = function() {
     localStorage.clear();
     sessionStorage.clear();
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function() {
-        console.log('User signed out.');
-    });
-
 };
 
-// Google Access
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function() {
-        console.log('User signed out.');
-    });
-};
 
 // Saludar invitado
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null || localStorage.isNotNull()) {
+    if (nombreNoRecordado == null && nombreRecordado == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
