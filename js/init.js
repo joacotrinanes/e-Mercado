@@ -48,7 +48,7 @@ var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-var estadoGoogle = JSON.parse(localStorage.getItem('google'));
+var usuarioGoogle = JSON.parse(localStorage.getItem('googleUser'));
 
 
 
@@ -62,7 +62,7 @@ var desconectar = function() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null || estadoGoogle !== 'ok') {
+    if (nombreNoRecordado == null && nombreRecordado == null && usuarioGoogle == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {

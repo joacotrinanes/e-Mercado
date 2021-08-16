@@ -23,6 +23,7 @@ function onSignIn(googleUser) {
 function googleSignIn() {
     if (googleName != null) {
         localStorage.setItem('google', 'ok');
+        localStorage.setItem('googleUser', JSON.stringify(googleName));
     }
 }
 
