@@ -74,7 +74,7 @@ function signOut() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null || localStorage.isNotNull()) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
