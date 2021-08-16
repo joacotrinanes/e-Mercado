@@ -58,9 +58,9 @@ function signOut() {
 };
 
 var desconectar = function() {
+    signOut();
     localStorage.clear();
     sessionStorage.clear();
-    signOut();
 
 };
 
