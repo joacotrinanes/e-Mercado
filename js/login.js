@@ -98,7 +98,7 @@ function onSignIn(googleUser) {
      console.log('Name: ' + profile.getName());
      console.log('Image URL: ' + profile.getImageUrl());
      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
-    window.location.href = 'index.html'
+    window.location.href = 'index.html';
     datos.usuario = profile.getName();
     datos.contraseña = 'google';
     datos.estado = 'conectado';
