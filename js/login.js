@@ -59,15 +59,6 @@ function recordarUsuario() {
 
 };
 
-// Si continua conectado
-
-var conectado = function() {
-    let estado = JSON.parse(localStorage.getItem('estado'));
-    if (estado === 'conectado') {
-        window.location.href = 'index.html';
-    }
-};
-
 // Google Access
 
 function onSignIn(googleUser) {
@@ -76,6 +67,21 @@ function onSignIn(googleUser) {
      console.log('Name: ' + profile.getName());
      console.log('Image URL: ' + profile.getImageUrl());
      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
+    return profile.getName();
+};
+
+var googleUser = onSignIn();
+
+
+// Si continua conectado
+
+var conectado = function() {
+    let estado = JSON.parse(localStorage.getItem('estado'));
+    if (estado === 'conectado') {
+        window.location.href = 'index.html';
+    } else if (googleUser !== '') {
+        window.location.href = 'index.html';
+    }
 };
 
 
