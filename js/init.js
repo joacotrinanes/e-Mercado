@@ -65,10 +65,13 @@ var saludarInvitado = function() {
     if (nombreNoRecordado == null && nombreRecordado == null && usuarioGoogle == null) {
         window.location.href = 'login.html';
 
-    } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
+    } else if (nombreRecordado !== '' && nombreNoRecordado == null && usuarioGoogle == null) {
         invitado.innerHTML = 'Hola ' + nombreRecordado + '!';
 
-    } else if (nombreNoRecordado !== '' && nombreRecordado == null) {
+    } else if (nombreNoRecordado !== '' && nombreRecordado == null && usuarioGoogle == null) {
+        invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
+
+    } else if (usuarioGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
         invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
 
     }
