@@ -98,11 +98,11 @@ function onSignIn(googleUser) {
      console.log('Name: ' + profile.getName());
      console.log('Image URL: ' + profile.getImageUrl());
      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
-    if (profile.getName() !== null) {
-        datos.usuario = profile.getName();
-        datos.contraseña = 'google';
-        window.location.href = 'index.html';
-    }
+    /* if (profile.getName() !== null) {
+         datos.usuario = profile.getName();
+         datos.contraseña = 'google';
+         window.location.href = 'index.html';
+     }*/
 
 
 };
