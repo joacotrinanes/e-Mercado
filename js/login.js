@@ -86,8 +86,8 @@ function recordarUsuario() {
 
 var conectado = function() {
     let estado = JSON.parse(localStorage.getItem('estado'));
-    let estadoGoogle = JSON.parse(localStorage.getItem('google'));
-    if (estado === 'conectado' || estadoGoogle === 'ok') {
+
+    if (estado === 'conectado' || googleName !== null) {
         window.location.href = 'index.html';
     }
 
