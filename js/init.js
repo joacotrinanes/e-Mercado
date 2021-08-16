@@ -53,7 +53,9 @@ var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
-        console.log('User signed out.'); //cambiar
+        // console.log('User signed out.');
+        localStorage.clear();
+        sessionStorage.clear();
     });
 };
 
