@@ -59,12 +59,12 @@ function signOut() {
     });
 };
 
-var desconectar = function() {
+/*var desconectar = function() {
     signOut();
     localStorage.clear();
     sessionStorage.clear();
 
-};
+};*/
 
 var saludarInvitado = function() {
 
