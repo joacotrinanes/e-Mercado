@@ -49,22 +49,13 @@ var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
 
-// Google Access function
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function() {
-        // console.log('User signed out.');
-        localStorage.clear();
-        sessionStorage.clear();
-    });
-};
 
-/*var desconectar = function() {
-    signOut();
+
+var desconectar = function() {
     localStorage.clear();
     sessionStorage.clear();
 
-};*/
+};
 
 var saludarInvitado = function() {
 
