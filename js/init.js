@@ -72,7 +72,7 @@ var saludarInvitado = function() {
         invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
 
     } else if (usuarioGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
-        invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
+        invitado.innerHTML = 'Hola ' + usuarioGoogle + '!';
 
     }
 
