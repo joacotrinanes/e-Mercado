@@ -15,18 +15,11 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
-    googleName = profile.getName();
+    googleName = localStorage.setItem('googleName', JSON.stringify(profile.getName()));
     window.location.href = 'index.html';
-    console.log(googleName);
 
 };
 
-function googleSignIn() {
-    if (googleName !== null) {
-        localStorage.setItem('google', 'ok');
-        localStorage.setItem('googleUser', JSON.stringify(googleName));
-    }
-}
 
 
 
@@ -112,7 +105,5 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
     conectado();
-
-    googleSignIn();
 
 });
