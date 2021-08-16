@@ -20,6 +20,12 @@ function onSignIn(googleUser) {
 
 };
 
+function googleSignIn() {
+    if (googleName != null) {
+        localStorage.setItem('google', 'ok');
+    }
+}
+
 
 
 /* Control de usuario y contraseña*/
@@ -79,7 +85,8 @@ function recordarUsuario() {
 
 var conectado = function() {
     let estado = JSON.parse(localStorage.getItem('estado'));
-    if (estado === 'conectado') {
+    let estadoGoogle = JSON.parse(localStorage.getItem('google'));
+    if (estado === 'conectado' || estadoGoogle === 'ok') {
         window.location.href = 'index.html';
     }
 
@@ -103,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
     conectado();
+
+    googleSignIn();
 
 
 
