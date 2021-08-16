@@ -6,6 +6,20 @@ var errorContraseña = document.getElementById('errorContraseña');
 var recordar = false;
 var datos = {};
 
+// Google Access
+var googleName = null;
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    /*console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
+    googleName = profile.getName();
+    window.location.href = 'index.html'
+};
+
+
 
 /* Control de usuario y contraseña*/
 
@@ -67,6 +81,7 @@ var conectado = function() {
     if (estado === 'conectado') {
         window.location.href = 'index.html';
     }
+
 };
 
 

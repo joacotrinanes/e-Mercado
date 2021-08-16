@@ -6,7 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-
+    <!--Google Access-->
+    <meta name="google-signin-client_id" content="1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com">
 
     <title>eMercado - Todo lo que busques está aquí</title>
 
@@ -40,11 +41,14 @@
 
         </form>
         <button class="w-100 btn btn-lg btn-primary" type="submit" id='ingresar'>Ingresar</button>
-
+        <!--Google Access-->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <p class="mt-5 mb-3 text-muted">© 2021</p>
     </main>
 
     <script src="js/login.js"></script>
+    <!--Google Access-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>
