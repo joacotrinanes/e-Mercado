@@ -48,7 +48,7 @@ var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-var usuarioGoogle = JSON.parse(localStorage.getItem('googleName'));
+var usuarioGoogle = JSON.parse(sessionStorage.getItem('googleName'));
 
 
 

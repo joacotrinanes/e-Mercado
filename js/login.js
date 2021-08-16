@@ -15,13 +15,13 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
-    localStorage.setItem('googleName', JSON.stringify(profile.getName()));
+    sessionStorage.setItem('googleName', JSON.stringify(profile.getName()));
     window.location.href = 'index.html';
 
 };
 
 
-var googleUser = localStorage.getItem('googleName');
+var googleUser = sessionStorage.getItem('googleName');
 
 /* Control de usuario y contraseña*/
 
