@@ -17,6 +17,7 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
     googleName = profile.getName();
     window.location.href = 'index.html';
+
 };
 
 
