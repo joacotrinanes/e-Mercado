@@ -80,7 +80,7 @@ function onLoad() {
 
 // Getting google user data
 function retrievingData() {
-    if (auth2.isSignedIn.get()) {
+    if (gapi.auth2.isSignedIn.get()) {
         var profile = auth2.currentUser.get().getBasicProfile();
         googleUserName = profile.getGivenName();
     }
