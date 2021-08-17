@@ -76,8 +76,8 @@ function init() {
         gapi.auth2.init({
                 client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
             })
-            .then(profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getGivenName(), err => console.log(err))
-            //.then(googleUserInfo = profile.currentUser.get().getBasicProfile())
+            .then(profile = gapi.auth2.getAuthInstance().currentUser.get(), err => console.log(err))
+            .then(googleUserInfo = profile.getBasicProfile().getGivenName())
             //.then(googleUserName = googleUserInfo.getGivenName());
 
     });
