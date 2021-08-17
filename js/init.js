@@ -59,6 +59,7 @@ var desconectar = function() {
 
 //Google Access
 
+var profile = null;
 var googleUserName = null;
 
 function signOut() {
@@ -72,8 +73,10 @@ function signOut() {
 function onLoad() {
     gapi.load('auth2', function() {
         gapi.auth2.init({
-            client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
-        });
+                client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
+            })
+            .then(profile = gapi.auth2.getAuthInstance())
+            .then(profile.getBasicProfile().getGivenName());
 
     });
 };
@@ -115,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', onLoad());
 
-    document.body.addEventListener('load', retrievingData());
+    //document.body.addEventListener('load', retrievingData());
 
 
     // document.body.addEventListener('load', saludarInvitado());
