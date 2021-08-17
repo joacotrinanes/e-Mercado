@@ -78,7 +78,7 @@ function init() {
             })
             .then(profile = gapi.auth2.getAuthInstance())
             .then(googleUser = profile.currentUser.get())
-            //.then(googleUserName = googleUserInfo.getGivenName());
+            .then(googleUserName = googleUser.getGivenName());
 
     });
 };
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', init());
 
-    document.body.addEventListener('load', retrievingData());
+    //document.body.addEventListener('load', retrievingData());
 
 
     // document.body.addEventListener('load', saludarInvitado());
