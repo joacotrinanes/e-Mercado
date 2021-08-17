@@ -116,7 +116,8 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    document.body.addEventListener('load', onLoad());
+    //document.body.addEventListener('load', onLoad());
+    window.onloadCallback = onLoad();
 
     document.body.addEventListener('load', onSignIn());
 
