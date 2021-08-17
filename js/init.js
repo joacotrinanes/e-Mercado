@@ -62,9 +62,13 @@ var desconectar = function() {
 var usuarioGoogle = null;
 
 var init = function() {
+    var profile = null;
     gapi.load('auth2', function() {
         gapi.auth2.GoogleAuth.then(
-            usuarioGoogle = gapi.auth2.getBasicProfile().getGivenName())
+            profile = gapi.auth2.getBasicProfile()).then(
+            usuarioGoogle = profile.getGivenName()
+        )
+
     });
 }
 
