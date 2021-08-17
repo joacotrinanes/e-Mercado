@@ -74,12 +74,17 @@ function onLoad() {
         gapi.auth2.init({
             client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
         });
-        if (auth2.isSignedIn.get()) {
-            var profile = auth2.currentUser.get().getBasicProfile();
-            googleUserName = profile.getGivenName();
-        }
+
     });
 };
+
+// Getting google user data
+function retrievingData() {
+    if (auth2.isSignedIn.get()) {
+        var profile = auth2.currentUser.get().getBasicProfile();
+        googleUserName = profile.getGivenName();
+    }
+}
 
 
 
@@ -109,6 +114,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 
     document.body.addEventListener('load', onLoad());
+
+    document.body.addEventListener('load', retrievingData());
 
 
     // document.body.addEventListener('load', saludarInvitado());
