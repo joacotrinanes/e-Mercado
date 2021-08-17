@@ -7,7 +7,7 @@ var recordar = false;
 var datos = {};
 
 // Google Access
-//var googleName = null;
+
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
