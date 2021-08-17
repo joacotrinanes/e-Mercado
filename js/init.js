@@ -74,6 +74,10 @@ function onLoad() {
         gapi.auth2.init({
             client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
         });
+        if (auth2.isSignedIn.get()) {
+            var profile = auth2.currentUser.get().getBasicProfile();
+            googleUserName = profile.getGivenName();
+        }
     });
 };
 
