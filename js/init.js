@@ -100,7 +100,7 @@ var saludarInvitado = function() {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
-    document.body.addEventListener('load', saludarInvitado());
+    //document.body.addEventListener('load', saludarInvitado());
 
     document.body.addEventListener('load', init());
 
