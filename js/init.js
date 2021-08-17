@@ -71,7 +71,9 @@ function signOut() {
 // Initializing oAuth client on this page
 function onLoad() {
     gapi.load('auth2', function() {
-        gapi.auth2.init();
+        gapi.auth2.init({
+            client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
+        });
     });
 };
 
