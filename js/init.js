@@ -76,8 +76,8 @@ function onLoad() {
                 client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
             })
             .then(profile = gapi.auth2.getAuthInstance())
-            .then(profile.currentUser.get().getBasicProfile());
-        googleUserName = gapi.auth2.BasicProfile.getGivenName();
+            .then(googleInfo = profile.currentUser.get().getBasicProfile());
+        googleUserName = googleInfo.getGivenName();
 
     });
 };
