@@ -48,7 +48,7 @@ var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-var usuarioGoogle = JSON.parse(sessionStorage.getItem('googleName'));
+//var usuarioGoogle = JSON.parse(sessionStorage.getItem('googleName'));
 
 
 
@@ -62,7 +62,7 @@ var desconectar = function() {
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
-        usuarioGoogle = null;
+        //usuarioGoogle = null;
     });
 };
 
@@ -78,21 +78,16 @@ function onLoad() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null && usuarioGoogle == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null) {
         window.location.href = 'login.html';
 
-    } else if (nombreRecordado !== '' && nombreNoRecordado == null && usuarioGoogle == null) {
+    } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
         invitado.innerHTML = 'Hola ' + nombreRecordado + '!';
 
-    } else if (nombreNoRecordado !== '' && nombreRecordado == null && usuarioGoogle == null) {
+    } else if (nombreNoRecordado !== '' && nombreRecordado == null) {
         invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
 
-    } else if (usuarioGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
-        invitado.innerHTML = 'Hola ' + usuarioGoogle + '!';
-
     }
-
-
 };
 
 
