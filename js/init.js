@@ -59,18 +59,6 @@ var desconectar = function() {
 
 //Google Access
 
-var usuarioGoogle = null;
-
-var init = function() {
-    var profile = null;
-    gapi.load('auth2', function() {
-        gapi.auth2.init({ client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com" })
-            .then(profile = GoogleAuth.getBasicProfile())
-            .then(usuarioGoogle = profile.getGivenName())
-
-    });
-}
-
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.disconnect().then(function() {
@@ -84,7 +72,7 @@ function signOut() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null && usuarioGoogle == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
@@ -103,9 +91,8 @@ var saludarInvitado = function() {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
-    //document.body.addEventListener('load', saludarInvitado());
+    document.body.addEventListener('load', saludarInvitado());
 
-    document.body.addEventListener('load', init());
 
 
 
