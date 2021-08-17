@@ -81,7 +81,7 @@ function signOut() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null && usuarioGoogle == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
@@ -101,6 +101,8 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', saludarInvitado());
+
+    document.body.addEventListener('load', init());
 
 
 
