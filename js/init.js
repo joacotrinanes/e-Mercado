@@ -112,13 +112,12 @@ var saludarInvitado = function() {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
-    document.body.addEventListener('load', saludarInvitado());
 
     document.body.addEventListener('load', onLoad());
 
     document.body.addEventListener('load', onSignIn());
 
-
+    document.body.addEventListener('load', saludarInvitado());
 
 
 });
