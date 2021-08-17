@@ -59,12 +59,33 @@ var desconectar = function() {
 
 //Google Access
 
+var googleUserName = null;
+
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.disconnect().then(function() {
-        //
+    auth2.signOut().then(function() {
+        console.log('User signed out.');
     });
 };
+
+// Initializing oAuth client on this page
+function onLoad() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    });
+};
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    /*console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
+    //sessionStorage.setItem('googleName', JSON.stringify(profile.getName()));
+    googleUserName = profile.getName();
+
+};
+
 
 
 
@@ -72,7 +93,7 @@ function signOut() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null && googleUserName == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
@@ -92,6 +113,10 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', saludarInvitado());
+
+    document.body.addEventListener('load', onLoad());
+
+    document.body.addEventListener('load', onSignIn());
 
 
 
