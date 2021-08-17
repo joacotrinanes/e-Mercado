@@ -77,6 +77,7 @@ function onLoad() {
             })
             .then(profile = gapi.auth2.getAuthInstance())
             .then(profile.currentUser.get().getBasicProfile());
+        googleUserName = gapi.auth2.BasicProfile.getGivenName();
 
     });
 };
