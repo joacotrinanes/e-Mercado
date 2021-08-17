@@ -60,7 +60,7 @@ var desconectar = function() {
 //Google Access
 
 var profile = null;
-var googleUserInfo = null;
+var googleUser = null;
 var googleUserName = null;
 
 function signOut() {
@@ -76,8 +76,8 @@ function init() {
         gapi.auth2.init({
                 client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
             })
-            .then(profile = gapi.auth2.getAuthInstance().currentUser.get(), err => console.log(err))
-            .then(googleUserInfo = profile.getBasicProfile().getGivenName())
+            .then(profile = gapi.auth2.getAuthInstance())
+            .then(googleUser = profile.currentUser.get())
             //.then(googleUserName = googleUserInfo.getGivenName());
 
     });
@@ -85,11 +85,11 @@ function init() {
 
 // Getting google user data
 function retrievingData() {
-    if (gapi.auth2.isSignedIn.get()) {
-        var profile = auth2.currentUser.get().getBasicProfile();
-        googleUserName = profile.getGivenName();
+    if (googleUser.isSignedIn()) {
+        googleUserName = googleUser.getBasicProfile();
+
     }
-}
+};
 
 
 
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', init());
 
-    //document.body.addEventListener('load', retrievingData());
+    document.body.addEventListener('load', retrievingData());
 
 
     // document.body.addEventListener('load', saludarInvitado());
