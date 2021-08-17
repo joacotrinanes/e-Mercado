@@ -71,7 +71,7 @@ function signOut() {
 };
 
 // Initializing oAuth client on this page
-function onLoad() {
+function init() {
     gapi.load('auth2', function() {
         gapi.auth2.init({
                 client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
@@ -118,7 +118,7 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    document.body.addEventListener('load', onLoad());
+    document.body.addEventListener('load', init());
 
     //document.body.addEventListener('load', retrievingData());
 
