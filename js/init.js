@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.body.addEventListener('load', onSignIn());
 
-    document.body.addEventListener('load', saludarInvitado());
+    // document.body.addEventListener('load', saludarInvitado());
 
 
 });
