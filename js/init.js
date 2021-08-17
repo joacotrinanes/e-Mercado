@@ -60,6 +60,7 @@ var desconectar = function() {
 //Google Access
 
 var profile = null;
+var googleUserInfo = null;
 var googleUserName = null;
 
 function signOut() {
@@ -76,9 +77,8 @@ function onLoad() {
                 client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
             })
             .then(profile = gapi.auth2.getAuthInstance())
-            .then(googleInfo = profile.currentUser.get().getBasicProfile())
-            .then(googleName = googleInfo.getGivenName());
-        googleUserName = googleName;
+            .then(googleUserInfo = profile.currentUser.get().getBasicProfile())
+            .then(googleUserName = googleInfo.getGivenName());
 
     });
 };
