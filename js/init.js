@@ -77,8 +77,11 @@ function onLoad() {
     });
 };
 
-function onSignIn(googleUser) {
-    var profile = gapi.auth2.GoogleAuth.then(googleUser.getBasicProfile())
+function onSignIn() {
+
+
+    var googleAuth = gapi.auth2.getAuthInstance();
+    var profile = googleAuth.getBasicProfile();
 
     /*console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
