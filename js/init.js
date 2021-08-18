@@ -73,12 +73,10 @@ function signOut() {
 
 // Initializing oAuth client on this page
 function onLoad() {
-    if (nombreGoogle !== '') {
-        gapi.load('auth2', function() {
-            gapi.auth2.init();
-        });
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    });
 
-    }
 };
 
 
