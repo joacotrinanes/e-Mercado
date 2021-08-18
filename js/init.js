@@ -62,6 +62,7 @@ var desconectar = function() {
 var profile = null;
 var googleUser = null;
 var googleUserName = null;
+var googleTry = null;
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -78,7 +79,8 @@ function init() {
             })
             .then(profile = gapi.auth2.getAuthInstance())
             .then(googleUser = profile.currentUser.get())
-            .then(googleUserName = googleUser.getName());
+            .then(googleUserName = googleUser.getName())
+            .then(googleTry = auth2.currentUser.get().getBasicProfile().getName())
 
     });
 };
