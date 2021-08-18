@@ -82,7 +82,7 @@ function init() {
             //.then()
 
     });
-    googleUserName = googleUser.getBasicProfile().getName();
+    googleUserName = googleUser.Ts.Rt;
 };
 
 // Getting google user data
