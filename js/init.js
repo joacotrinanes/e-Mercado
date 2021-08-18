@@ -79,10 +79,10 @@ function init() {
             })
             .then(profile = gapi.auth2.getAuthInstance())
             .then(googleUser = profile.currentUser.get())
-            //.then()
+            .then(googleUserName = googleUser.getBasicProfile().getName())
 
     });
-    googleUserName = googleUser.getName();
+
     /* Ya me esta agarrando googleUser como object. 
        Este comentario es lo que falta hacer commit; innecesario  */
 };
