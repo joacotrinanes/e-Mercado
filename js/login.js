@@ -17,9 +17,9 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
     //sessionStorage.setItem('googleName', JSON.stringify(profile.getName()));
     let datosGoogle = {};
-    datosGoogle.usuario = profile.getName();
+    datosGoogle.usuarioGoogle = profile.getName();
     datosGoogle.estado = 'conectado';
-    sessionStorage.setItem('usuario', JSON.stringify(datosGoogle.usuario));
+    sessionStorage.setItem('usuarioGoogle', JSON.stringify(datosGoogle.usuarioGoogle));
     sessionStorage.setItem('estado', JSON.stringify(datosGoogle.estado));
 
     window.location.href = 'index.html';

@@ -48,6 +48,7 @@ var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
+var nombreGoogle = JSON.parse(sessionStorage.getItem('usuarioGoogle'));
 
 
 
@@ -72,10 +73,12 @@ function signOut() {
 
 // Initializing oAuth client on this page
 function onLoad() {
-    gapi.load('auth2', function() {
-        gapi.auth2.init();
-    });
+    if (nombreGoogle !== '') {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
 
+    }
 };
 
 
