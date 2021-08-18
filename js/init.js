@@ -82,7 +82,7 @@ function init() {
             //.then()
 
     });
-    googleUserName = googleUser.getBasicProfile().getName();
+    googleUserName = googleUser.getBasicProfile();
     /* Ya me esta agarrando googleUser como object. 
        Este comentario es lo que falta hacer commit; innecesario  */
 };
