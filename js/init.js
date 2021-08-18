@@ -82,7 +82,9 @@ function init() {
             //.then()
 
     });
-    googleUserName = googleUser.Ts.Rt;
+    googleUserName = googleUser.getBasicProfile().getName();
+    /* Ya me esta agarrando googleUser como object. 
+       Este comentario es lo que falta hacer commit; innecesario  */
 };
 
 // Getting google user data
