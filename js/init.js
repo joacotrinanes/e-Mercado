@@ -110,7 +110,7 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    document.body.addEventListener('load', onLoad());
+    //document.body.addEventListener('load', onLoad());
 
     document.body.addEventListener('load', saludarInvitado());
 
