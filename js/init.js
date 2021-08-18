@@ -98,13 +98,16 @@ var saludarInvitado = function() {
 
 
 
+// Función para que cargue correctamente gapi (biblioteca google)
+window.addEventListener('load', onLoad());
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    document.body.addEventListener('load', onLoad());
+    //document.body.addEventListener('load', onLoad());
 
     document.body.addEventListener('load', saludarInvitado());
 
