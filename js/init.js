@@ -87,22 +87,24 @@ function onLoad() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null && nombreGoogle == null) {
         window.location.href = 'login.html';
 
-    } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
+    } else if (nombreRecordado !== '' && nombreNoRecordado == null && nombreGoogle == null) {
         invitado.innerHTML = 'Hola ' + nombreRecordado + '!';
 
-    } else if (nombreNoRecordado !== '' && nombreRecordado == null) {
+    } else if (nombreNoRecordado !== '' && nombreRecordado == null && nombreGoogle == null) {
         invitado.innerHTML = 'Hola ' + nombreNoRecordado + '!';
+
+    } else if (nombreGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
+        invitado.innerHTML = 'Hola ' + nombreGoogle + '!';
 
     }
 };
 
 
 
-// Función para que cargue correctamente gapi (biblioteca google)
-window.addEventListener('load', onLoad());
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -110,7 +112,7 @@ window.addEventListener('load', onLoad());
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    //document.body.addEventListener('load', onLoad());
+    document.body.addEventListener('load', onLoad());
 
     document.body.addEventListener('load', saludarInvitado());
 
