@@ -60,4 +60,6 @@ body {
 
 #googleBtn {
     width: 240;
+    margin: auto;
+    align-items: center;
 }
