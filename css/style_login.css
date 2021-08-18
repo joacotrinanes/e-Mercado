@@ -59,7 +59,8 @@ body {
 }
 
 #googleBtn {
-    width: 240;
-    margin: auto;
+    width: 400;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
 }
