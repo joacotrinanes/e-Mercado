@@ -79,7 +79,7 @@ function init() {
             })
             .then(profile = gapi.auth2.getAuthInstance())
             .then(googleUser = profile.currentUser.get())
-            .then(googleUserName = googleUser.getBasicProfile().getName())
+            .then(googleUserName = googleUser.getBasicProfile())
 
     });
 
