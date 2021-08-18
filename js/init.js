@@ -48,21 +48,18 @@ var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
 var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
 var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-//var usuarioGoogle = JSON.parse(sessionStorage.getItem('googleName'));
+
 
 
 
 var desconectar = function() {
     localStorage.clear();
     sessionStorage.clear();
+    signOut();
 };
 
 //Google Access
 
-var profile = null;
-var googleUser = null;
-var googleUserName = null;
-var googleName = null;
 
 
 function signOut() {
@@ -73,29 +70,12 @@ function signOut() {
 };
 
 // Initializing oAuth client on this page
-function init() {
+function onLoad() {
     gapi.load('auth2', function() {
-        gapi.auth2.init({
-                client_id: "1059580869201-j9pfil75rvqab3e3s0c1ikbcpb3nlcmt.apps.googleusercontent.com"
-            })
-            .then(profile = gapi.auth2.getAuthInstance())
-            .then(googleUser = profile.currentUser.get())
-            .then(googleUserName = googleUser.getBasicProfile())
-
+        gapi.auth2.init();
     });
-    googleName = googleUserName.getName();
-    /* Ya me esta agarrando googleUser como object. 
-       Este comentario es lo que falta hacer commit; innecesario  */
+
 };
-
-// Getting google user data
-function retrievingData() {
-    if (googleUser.isSignedIn()) {
-        googleUserName = googleUser.getBasicProfile();
-
-    }
-};
-
 
 
 
@@ -103,7 +83,7 @@ function retrievingData() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null && googleUserName == null) {
+    if (nombreNoRecordado == null && nombreRecordado == null) {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null) {
@@ -123,12 +103,9 @@ var saludarInvitado = function() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
 
-    document.body.addEventListener('load', init());
+    document.body.addEventListener('load', onLoad());
 
-    //document.body.addEventListener('load', retrievingData());
-
-
-    // document.body.addEventListener('load', saludarInvitado());
+    document.body.addEventListener('load', saludarInvitado());
 
 
 });

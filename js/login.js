@@ -16,6 +16,12 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.*/
     //sessionStorage.setItem('googleName', JSON.stringify(profile.getName()));
+    let datosGoogle = {};
+    datosGoogle.usuario = profile.getName();
+    datosGoogle.estado = 'conectado';
+    sessionStorage.setItem('usuario', JSON.stringify(datosGoogle.usuario));
+    sessionStorage.setItem('estado', JSON.stringify(datosGoogle.estado));
+
     window.location.href = 'index.html';
 
 };
@@ -79,9 +85,10 @@ function recordarUsuario() {
 // Si continua conectado
 
 var conectado = function() {
-    let estado = JSON.parse(localStorage.getItem('estado'));
+    let estadoLocalStorage = JSON.parse(localStorage.getItem('estado'));
+    let estadoSessionStorage = JSON.parse(sessionStorage.getItem('estado'))
 
-    if (estado === 'conectado') {
+    if (estadoLocalStorage === 'conectado' || estadoSessionStorage === 'conectado') {
         window.location.href = 'index.html';
     }
 
