@@ -62,6 +62,7 @@ var desconectar = function() {
 var profile = null;
 var googleUser = null;
 var googleUserName = null;
+var googleName = null;
 
 
 function signOut() {
@@ -82,7 +83,7 @@ function init() {
             .then(googleUserName = googleUser.getBasicProfile())
 
     });
-
+    googleName = googleUserName.getName();
     /* Ya me esta agarrando googleUser como object. 
        Este comentario es lo que falta hacer commit; innecesario  */
 };
