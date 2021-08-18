@@ -53,9 +53,10 @@ var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
 
 
 var desconectar = function() {
+    signOut();
     localStorage.clear();
     sessionStorage.clear();
-    signOut();
+
 };
 
 //Google Access
