@@ -54,9 +54,10 @@ var nombreGoogle = JSON.parse(sessionStorage.getItem('usuarioGoogle'));
 
 
 var desconectar = function() {
-    signOut();
     localStorage.clear();
     sessionStorage.clear();
+    signOut();
+
 
 };
 
