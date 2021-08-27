@@ -9,7 +9,7 @@ var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
-var currentDisplay = 'List';
+var currentDisplay = undefined;
 
 function sortProducts(criteria, array) {
     let result = [];
@@ -81,7 +81,7 @@ function showProductsList() {
             `;
                 htmlContentToAppendAlbum = '';
             } else if (currentDisplay === 'Album') {
-                htmlContentToAppendAlbum += `<div class="card" style="width: 24rem; margin: 5px">
+                htmlContentToAppendAlbum += `<div class="card" style="width: 22rem; margin: 5px">
                                       <img src="${product.imgSrc}" class="bd-placeholder-img card-img-top" width="302" height="225">
                                       <div class="card-body">
                                       <div class="row">
@@ -91,10 +91,8 @@ function showProductsList() {
                                       <div class="col col-4">                                      
                                       <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
                                       </div></div>
-                                      <h2 class="card-text"> USD ${product.cost}</h2><br>                                                                     
-                                      </div>
-                                      <div class="card-body">                                                                    
-                                      <p class="card-text description"> ${product.description}</p>
+                                      <h2 class="card-text"> USD ${product.cost}</h2><br>                                                                                                                                       
+                                      <small class="card-text description" style="display: none" onclick="displayElement()"> ${product.description}</small>
                                       </div>
                                       </div>`;
                 htmlContentToAppendList = '';
@@ -127,6 +125,9 @@ function sortAndShowProducts(sortCriteria, productsArray) {
         currentProductsArray = productsArray;
     }
 
+    if (currentDisplay == undefined) {
+        currentDisplay = 'Album';
+    }
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
     //Muestro las categorías ordenadas
@@ -149,11 +150,14 @@ function search() {
 
     currentProductsArray = filteredArray;
 
+
 }
 
 // Display product description in album display
 
-
+function displayElement() {
+    this.style.display = 'block';
+}
 
 
 
