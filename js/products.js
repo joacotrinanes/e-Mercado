@@ -9,6 +9,7 @@ var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
+var currentDisplay = 'List';
 
 function sortProducts(criteria, array) {
     let result = [];
@@ -52,14 +53,16 @@ function sortProducts(criteria, array) {
 
 function showProductsList() {
 
-    let htmlContentToAppend = "";
+    let htmlContentToAppendList = "";
+    let htmlContentToAppendAlbum = "";
+
     for (let i = 0; i < currentProductsArray.length; i++) {
         let product = currentProductsArray[i];
 
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
-
-            htmlContentToAppend += `
+            if (currentDisplay === 'List') {
+                htmlContentToAppendList += `
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
@@ -75,14 +78,47 @@ function showProductsList() {
                     </div>
                 </div>
             </div>
-            `
+            `;
+                htmlContentToAppendAlbum = '';
+            } else if (currentDisplay === 'Album') {
+                htmlContentToAppendAlbum += `<div class="card" style="width: 24rem; margin: 5px">
+                                      <img src="${product.imgSrc}" class="bd-placeholder-img card-img-top" width="302" height="225">
+                                      <div class="card-body">
+                                      <div class="row">
+                                      <div class="col col-8">                                                                           
+                                      <h4 class="card-text">${product.name}</h4>
+                                      </div>
+                                      <div class="col col-4">                                      
+                                      <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
+                                      </div></div>
+                                      <h2 class="card-text"> USD ${product.cost}</h2><br>                                                                     
+                                      </div>
+                                      <div class="card-body">                                                                    
+                                      <p class="card-text description"> ${product.description}</p>
+                                      </div>
+                                      </div>`;
+                htmlContentToAppendList = '';
+
+            }
         }
     }
 
 
-    document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
+    document.getElementById("prod-list-container").innerHTML = htmlContentToAppendList;
+    document.getElementById('album-list-container').innerHTML = htmlContentToAppendAlbum;
+
 
 };
+
+function displayAlbum() {
+    currentDisplay = 'Album';
+    showProductsList();
+}
+
+function displayList() {
+    currentDisplay = 'List';
+    showProductsList();
+}
 
 function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
@@ -114,6 +150,10 @@ function search() {
     currentProductsArray = filteredArray;
 
 }
+
+// Display product description in album display
+
+
 
 
 
@@ -180,6 +220,15 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('searchBar').addEventListener('keypress', function() {
         search();
         showProductsList();
+    })
+
+    document.getElementById('list').addEventListener('click', function() {
+        displayList();
+    })
+
+
+    document.getElementById('album').addEventListener('click', function() {
+        displayAlbum();
     })
 
 });
