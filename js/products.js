@@ -81,19 +81,24 @@ function showProductsList() {
             `;
                 htmlContentToAppendAlbum = '';
             } else if (currentDisplay === 'Album') {
-                htmlContentToAppendAlbum += `<div class="card" style="width: 22rem; margin: 5px">
+                htmlContentToAppendAlbum += `<div class="card" style="width: 22rem; margin: 5px"  onclick="flip(event)">
+                                       
                                       <img src="${product.imgSrc}" class="bd-placeholder-img card-img-top" width="302" height="225">
                                       <div class="card-body">
+                                      <div class="front">
                                       <div class="row">
-                                      <div class="col col-8">                                                                           
+                                      <div class="col col-7">                                                                           
                                       <h4 class="card-text">${product.name}</h4>
                                       </div>
-                                      <div class="col col-4">                                      
+                                      <div class="col col-5">                                      
                                       <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
-                                      </div></div>
-                                      <h2 class="card-text"> USD ${product.cost}</h2><br>                                                                                                                                       
-                                      <small class="card-text description" style="display: none" onclick="displayElement()"> ${product.description}</small>
+                                      </div></div><br>
+                                      <h2> USD ${product.cost}</h2><br>                                                                                                                                       
                                       </div>
+                                      <div class="back">
+                                       <h5 class="card-text">${product.description}</h5>
+                                       </div>
+                                       </div>
                                       </div>`;
                 htmlContentToAppendList = '';
 
@@ -145,19 +150,28 @@ function search() {
     let listArray = currentProductsArray;
 
     let filteredArray = listArray.filter(product => {
-        return (product.name.toLowerCase().includes(filter)) || (product.description.toLowerCase().includes(filter));
-    });
+        return (product.name.toLowerCase().includes(filter) || product.description.toLowerCase().includes(filter));
+    })
 
     currentProductsArray = filteredArray;
+
+    showProductsList();
 
 
 }
 
 // Display product description in album display
 
-function displayElement() {
-    this.style.display = 'block';
-}
+function flip(event) {
+    var element = event.currentTarget;
+    if (element.className === "card") {
+        if (element.style.transform == "rotateY(180deg)") {
+            element.style.transform = "rotateY(0deg)";
+        } else {
+            element.style.transform = "rotateY(180deg)";
+        }
+    }
+};
 
 
 
@@ -223,16 +237,15 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('searchBar').addEventListener('keyup', function() {
         search();
-        showProductsList();
-    })
+    });
 
     document.getElementById('list').addEventListener('click', function() {
         displayList();
-    })
+    });
 
 
     document.getElementById('album').addEventListener('click', function() {
         displayAlbum();
-    })
+    });
 
 });
