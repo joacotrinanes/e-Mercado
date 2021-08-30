@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         showProductsList();
     });
 
-    document.getElementById('searchBar').addEventListener('keypress', function() {
+    document.getElementById('searchBar').addEventListener('keyup', function() {
         search();
         showProductsList();
     })
