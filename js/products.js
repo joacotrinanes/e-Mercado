@@ -93,7 +93,7 @@ function showProductsList() {
                                       <div class="col col-5">                                      
                                       <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
                                       </div></div><br>
-                                      <h2> USD ${product.cost}</h2><br>                                                                                                                                       
+                                      <h2> USD ${product.cost}</h2>                                                                                                                                       
                                       </div>
                                       <div class="back">
                                        <h5 class="card-text">${product.description}</h5>
@@ -149,8 +149,8 @@ function search() {
     let filter = input.value.toLowerCase();
     let listArray = currentProductsArray;
 
-    let filteredArray = listArray.filter(product => {
-        return (product.name.toLowerCase().includes(filter) || product.description.toLowerCase().includes(filter));
+    var filteredArray = listArray.filter((product) => {
+        return (product.name.toLowerCase().includes(filter)) || (product.description.toLowerCase().includes(filter));
     })
 
     currentProductsArray = filteredArray;
