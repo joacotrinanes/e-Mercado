@@ -144,6 +144,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 //Search Bar
 
 
+
 function search() {
     let input = document.getElementById('searchBar');
     let filter = input.value.toLowerCase();
@@ -153,14 +154,14 @@ function search() {
         return (product.name.toLowerCase().includes(filter)) || (product.description.toLowerCase().includes(filter));
     })
 
-    currentProductsArray = filteredArray;
+    return currentProductsArray = filteredArray;
 
-    showProductsList();
+
 
 
 }
 
-// Display product description in album display
+// Display product description on card flip
 
 function flip(event) {
     var element = event.currentTarget;
@@ -237,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('searchBar').addEventListener('keyup', function() {
         search();
+        showProductsList();
     });
 
     document.getElementById('list').addEventListener('click', function() {
