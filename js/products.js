@@ -123,7 +123,7 @@ function displayList() {
     showProductsList(currentProductsArray);
 }
 
-function sortAndShowProducts(sortCriteria, productsArray) {
+function sortAndShowProducts(sortCriteria, productsArray) { ////Checkear!!!! Tema filtered array
     currentSortCriteria = sortCriteria;
 
     if (productsArray != undefined) {
@@ -133,24 +133,31 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     if (currentDisplay == undefined) {
         currentDisplay = 'Album';
     }
+
+
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
+    filteredArray = sortProducts(currentSortCriteria, filteredArray)
 
     //Muestro las categorías ordenadas
-    showProductsList(currentProductsArray);
+    if (filteredArray.length > 0) {
+        showProductsList(filteredArray);
+    } else {
+        showProductsList(currentProductsArray);
+    }
 };
 
 
 
 //Search Bar
 
-
+var filteredArray = [];
 
 function search() {
     let input = document.getElementById('searchBar');
     let filter = input.value.toLowerCase();
     let listArray = currentProductsArray;
 
-    var filteredArray = listArray.filter((product) => {
+    filteredArray = listArray.filter((product) => {
         return (product.name.toLowerCase().includes(filter)) || (product.description.toLowerCase().includes(filter));
     })
 
@@ -233,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             maxPrice = undefined;
         }
 
-        showProductsList();
+        showProductsList(currentProductsArray);
     });
 
     document.getElementById('searchBar').addEventListener('keyup', function() {
