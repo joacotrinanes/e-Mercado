@@ -123,7 +123,7 @@ function displayList() {
     showProductsList(currentProductsArray);
 }
 
-function sortAndShowProducts(sortCriteria, productsArray) { ////Checkear!!!! Tema filtered array
+function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
     if (productsArray != undefined) {
