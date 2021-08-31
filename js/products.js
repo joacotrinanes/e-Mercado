@@ -51,13 +51,13 @@ function sortProducts(criteria, array) {
     return result;
 };
 
-function showProductsList() {
+function showProductsList(array) {
 
     let htmlContentToAppendList = "";
     let htmlContentToAppendAlbum = "";
 
-    for (let i = 0; i < currentProductsArray.length; i++) {
-        let product = currentProductsArray[i];
+    for (let i = 0; i < array.length; i++) {
+        let product = array[i];
 
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
@@ -115,12 +115,12 @@ function showProductsList() {
 
 function displayAlbum() {
     currentDisplay = 'Album';
-    showProductsList();
+    showProductsList(currentProductsArray);
 }
 
 function displayList() {
     currentDisplay = 'List';
-    showProductsList();
+    showProductsList(currentProductsArray);
 }
 
 function sortAndShowProducts(sortCriteria, productsArray) {
@@ -136,7 +136,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
     //Muestro las categorías ordenadas
-    showProductsList();
+    showProductsList(currentProductsArray);
 };
 
 
@@ -154,7 +154,7 @@ function search() {
         return (product.name.toLowerCase().includes(filter)) || (product.description.toLowerCase().includes(filter));
     })
 
-    return currentProductsArray = filteredArray;
+    showProductsList(filteredArray);
 
 
 
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         minPrice = undefined;
         maxPrice = undefined;
 
-        showProductsList();
+        showProductsList(currentProductsArray);
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function() {
@@ -238,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('searchBar').addEventListener('keyup', function() {
         search();
-        showProductsList();
     });
 
     document.getElementById('list').addEventListener('click', function() {
