@@ -116,12 +116,20 @@ function showProductsList(array) {
 
 function displayAlbum() {
     currentDisplay = 'Album';
-    showProductsList(currentProductsArray);
+    if (filteredArray.length > 0) {
+        showProductsList(filteredArray);
+    } else {
+        showProductsList(currentProductsArray);
+    }
 }
 
 function displayList() {
     currentDisplay = 'List';
-    showProductsList(currentProductsArray);
+    if (filteredArray.length > 0) {
+        showProductsList(filteredArray);
+    } else {
+        showProductsList(currentProductsArray);
+    }
 }
 
 function sortAndShowProducts(sortCriteria, productsArray) {
