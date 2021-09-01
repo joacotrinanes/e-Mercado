@@ -6,6 +6,7 @@ const ORDER_BY_PROD_PRICE_DESC = "PriceDesc";
 const ORDER_DESC_RELEVANCE = "Relevance";
 const ORDER_BY_PROD_PRICE_ASC = "PriceAsc";
 var currentProductsArray = [];
+var filteredArray = [];
 var currentSortCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
@@ -150,7 +151,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 
 //Search Bar
 
-var filteredArray = [];
+
 
 function search() {
     let input = document.getElementById('searchBar');
