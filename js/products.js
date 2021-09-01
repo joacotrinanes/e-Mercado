@@ -219,7 +219,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
         minPrice = undefined;
         maxPrice = undefined;
 
-        showProductsList(currentProductsArray);
+        if (filteredArray.length > 0) {
+            showProductsList(filteredArray);
+        } else {
+            showProductsList(currentProductsArray);
+        }
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function() {
@@ -240,7 +244,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
             maxPrice = undefined;
         }
 
-        showProductsList(currentProductsArray);
+        if (filteredArray.length > 0) {
+            showProductsList(filteredArray);
+        } else {
+            showProductsList(currentProductsArray);
+        }
     });
 
     document.getElementById('searchBar').addEventListener('keyup', function() {
