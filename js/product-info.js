@@ -9,6 +9,7 @@ var category = undefined;
 var relatedProducts = [];
 var autosArray = [];
 var commentsArray = [];
+var currentSortCommentsCriteria = 'Fecha';
 
 
 
@@ -98,6 +99,22 @@ function sortCommentsArrayByDate() {
     commentsArray.sort((a, b) => {
         return new Date(b.dateTime) - new Date(a.dateTime);
     })
+    currentSortCommentsCriteria = 'Fecha';
+}
+
+function sortCommentsArrayByRating() {
+    commentsArray.sort((a, b) => {
+        return b.score - a.score;
+    })
+    currentSortCommentsCriteria = 'Rating';
+}
+
+function sortCommentsArrayByRatingAsc() {
+    commentsArray.sort((a, b) => {
+        return a.score - b.score;
+    })
+    currentSortCommentsCriteria = 'RatingAsc';
+
 }
 
 
@@ -306,7 +323,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('publicarOpinion').addEventListener('click', function() {
         compartirOpinion();
-        sortCommentsArrayByDate();
+        if (currentSortCommentsCriteria === 'Date') {
+            sortCommentsArrayByDate();
+        } else if (currentSortCommentsCriteria === 'Rating') {
+            sortCommentsArrayByRating();
+        } else if (currentSortCommentsCriteria === 'RatingAsc') {
+            sortCommentsArrayByRatingAsc();
+        }
         showComments();
         promedioRatings();
         document.getElementById('descripcionOpinion').value = "";
@@ -314,8 +337,21 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     })
 
+    document.getElementById('sortByDate').addEventListener('click', () => {
+        sortCommentsArrayByDate();
+        showComments();
+    })
 
 
+    document.getElementById('sortByRating').addEventListener('click', () => {
+        sortCommentsArrayByRating();
+        showComments();
+    })
+
+    document.getElementById('sortByRatingAsc').addEventListener('click', () => {
+        sortCommentsArrayByRatingAsc();
+        showComments();
+    })
 
 
 });
