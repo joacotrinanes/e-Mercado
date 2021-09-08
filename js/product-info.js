@@ -200,58 +200,58 @@ function nombreUsuarioOpinion() {
 
 }
 
+function formatearFecha(newDate) {
+    let year = newDate.getFullYear();
+
+    let month = "";
+    if ((newDate.getMonth() + 1) < 10) {
+        month = '0' + (newDate.getMonth() + 1);
+    } else {
+        month = newDate.getMonth() + 1;
+    }
+
+    let day = "";
+    if (newDate.getDay() < 10) {
+        day = '0' + newDate.getDay();
+    } else {
+        day = newDate.getDay();
+    }
+
+    let hours = "";
+    if (newDate.getHours() < 10) {
+        hours = '0' + newDate.getHours();
+    } else {
+        hours = newDate.getHours();
+    }
+
+    let minutes = "";
+    if (newDate.getMinutes() < 10) {
+        minutes = '0' + newDate.getMinutes();
+    } else {
+        minutes = newDate.getMinutes();
+    }
+    let seconds = "";
+    if (newDate.getSeconds() < 10) {
+        seconds = '0' + newDate.getSeconds();
+    } else {
+        seconds = newDate.getSeconds();
+    }
+    return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+}
+
 function compartirOpinion() {
     let descripcionOpinion = document.getElementById('descripcionOpinion').value;
     let score = document.getElementById('valor').innerHTML;
     let usuario = document.getElementById('mostrarNombreUsuario').innerHTML;
     let nuevaOpinion = {};
     let currentDateTime = new Date();
-
-    let month = "";
-    if ((currentDateTime.getMonth() + 1) < 10) {
-        month = '0' + (currentDateTime.getMonth() + 1);
-    } else {
-        month = currentDateTime.getMonth() + 1;
-    }
-
-    let day = "";
-    if (currentDateTime.getDay() < 10) {
-        day = '0' + currentDateTime.getDay();
-    } else {
-        day = currentDateTime.getDay();
-    }
-
-    let hours = "";
-    if (currentDateTime.getHours() < 10) {
-        hours = '0' + currentDateTime.getHours();
-    } else {
-        hours = currentDateTime.getHours();
-    }
-
-    let minutes = "";
-    if (currentDateTime.getMinutes() < 10) {
-        minutes = '0' + currentDateTime.getMinutes();
-    } else {
-        minutes = currentDateTime.getMinutes();
-    }
-    let seconds = "";
-    if (currentDateTime.getSeconds() < 10) {
-        seconds = '0' + currentDateTime.getSeconds();
-    } else {
-        seconds = currentDateTime.getSeconds();
-    }
-
-    let dateTime = currentDateTime.getFullYear() + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+    let dateTime = formatearFecha(currentDateTime);
     nuevaOpinion.dateTime = dateTime;
     nuevaOpinion.description = descripcionOpinion;
     nuevaOpinion.score = parseInt(score);
     nuevaOpinion.user = usuario;
 
     commentsArray.push(nuevaOpinion);
-
-    descripcionOpinion = "";
-    score = undefined;
-    descripcionOpinion = "";
 
 
 }
@@ -309,6 +309,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         sortCommentsArrayByDate();
         showComments();
         promedioRatings();
+        document.getElementById('descripcionOpinion').value = "";
+        document.getElementById('valor').innerHTML = undefined;
+
     })
 
 
