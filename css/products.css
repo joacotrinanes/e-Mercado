@@ -1,21 +1,16 @@
-.card {
-    transition: transform 1s;
-    transform-style: preserve-3d;
-    cursor: pointer;
+.productInfoLink {
+    text-decoration: none;
+    color: black;
+    margin: 0%;
+    padding: 0%;
 }
 
-.front,
-.back {
-    display: flex;
-    flex-direction: column;
-    backface-visibility: hidden;
-    align-items: center;
+.productInfoLink:hover {
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(46, 49, 224, 0.2);
 }
 
-.back {
-    transform: rotateY(180deg);
-}
-
-.front {
-    transform: rotateY(0deg);
+.productInfoLink:visited {
+    text-decoration: none;
 }

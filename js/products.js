@@ -64,6 +64,7 @@ function showProductsList(array) {
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
             if (currentDisplay === 'List') {
                 htmlContentToAppendList += `
+                <a href="product-info.html" class="list-group-item list-group-item-action">
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
@@ -79,14 +80,16 @@ function showProductsList(array) {
                     </div>
                 </div>
             </div>
+            </a>
             `;
                 htmlContentToAppendAlbum = '';
             } else if (currentDisplay === 'Album') {
-                htmlContentToAppendAlbum += `<div class="card" style="width: 22rem; margin: 5px"  onclick="flip(event)">
+                htmlContentToAppendAlbum += `
+                <a href="product-info.html" class="productInfoLink">
+                <div class="card" style="width: 22rem; margin: 5px; height: 100%;">
                                        
                                       <img src="${product.imgSrc}" class="bd-placeholder-img card-img-top" width="302" height="225">
                                       <div class="card-body">
-                                      <div class="front">
                                       <div class="row">
                                       <div class="col col-7">                                                                           
                                       <h4 class="card-text">${product.name}</h4>
@@ -94,13 +97,13 @@ function showProductsList(array) {
                                       <div class="col col-5">                                      
                                       <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
                                       </div></div><br>
-                                      <h2> USD ${product.cost}</h2>                                                                                                                                       
+                                      <h2 style="text-weight: bold;"> USD ${product.cost}</h2> 
+                                      <br>
+                                      <p class="card-text">${product.description}<p>                                                                                                                                      
                                       </div>
-                                      <div class="back">
-                                       <h5 class="card-text">${product.description}</h5>
-                                       </div>
-                                       </div>
-                                      </div>`;
+                                      
+                                      </div>
+                                      </a>`;
                 htmlContentToAppendList = '';
 
             }
@@ -114,6 +117,8 @@ function showProductsList(array) {
 
 };
 
+// Display functions
+
 function displayAlbum() {
     currentDisplay = 'Album';
     if (filteredArray.length > 0) {
@@ -122,6 +127,7 @@ function displayAlbum() {
         showProductsList(currentProductsArray);
     }
 }
+
 
 function displayList() {
     currentDisplay = 'List';
@@ -176,22 +182,6 @@ function search() {
 
 
 }
-
-// Display product description on card flip
-
-function flip(event) {
-    var element = event.currentTarget;
-    if (element.className === "card") {
-        if (element.style.transform == "rotateY(180deg)") {
-            element.style.transform = "rotateY(0deg)";
-        } else {
-            element.style.transform = "rotateY(180deg)";
-        }
-    }
-};
-
-
-
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
