@@ -263,12 +263,35 @@ function compartirOpinion() {
     let nuevaOpinion = {};
     let currentDateTime = new Date();
     let dateTime = formatearFecha(currentDateTime);
-    nuevaOpinion.dateTime = dateTime;
-    nuevaOpinion.description = descripcionOpinion;
-    nuevaOpinion.score = parseInt(score);
-    nuevaOpinion.user = usuario;
 
-    commentsArray.push(nuevaOpinion);
+    if (descripcionOpinion === "") {
+        document.getElementById('descripcionOpinion').style.borderColor = "red";
+        score = score;
+        console.log(score);
+
+
+    } else if (score === "") {
+
+        score = 0;
+        nuevaOpinion.dateTime = dateTime;
+        nuevaOpinion.description = descripcionOpinion;
+        nuevaOpinion.score = parseInt(score);
+        nuevaOpinion.user = usuario;
+
+        commentsArray.push(nuevaOpinion);
+        document.getElementById('descripcionOpinion').style.borderColor = "lightgray";
+
+    } else if (descripcionOpinion !== "") {
+
+        nuevaOpinion.dateTime = dateTime;
+        nuevaOpinion.description = descripcionOpinion;
+        nuevaOpinion.score = parseInt(score);
+        nuevaOpinion.user = usuario;
+
+        commentsArray.push(nuevaOpinion);
+        document.getElementById('descripcionOpinion').style.borderColor = "lightgray";
+    }
+
 
 
 }
@@ -323,7 +346,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('publicarOpinion').addEventListener('click', function() {
         compartirOpinion();
-        if (currentSortCommentsCriteria === 'Date') {
+
+        if (currentSortCommentsCriteria === 'Fecha') {
             sortCommentsArrayByDate();
         } else if (currentSortCommentsCriteria === 'Rating') {
             sortCommentsArrayByRating();
@@ -333,7 +357,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         showComments();
         promedioRatings();
         document.getElementById('descripcionOpinion').value = "";
-        document.getElementById('valor').innerHTML = undefined;
 
     })
 
