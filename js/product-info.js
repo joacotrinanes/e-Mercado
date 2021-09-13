@@ -227,12 +227,7 @@ function formatearFecha(newDate) {
         month = newDate.getMonth() + 1;
     }
 
-    let day = "";
-    if (newDate.getDay() < 10) {
-        day = '0' + newDate.getDay();
-    } else {
-        day = newDate.getDay();
-    }
+    let day = newDate.getDate();
 
     let hours = "";
     if (newDate.getHours() < 10) {
