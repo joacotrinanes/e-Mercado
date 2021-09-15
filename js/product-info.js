@@ -185,18 +185,6 @@ function promedioRatings() {
 
 //Add comment
 
-function califico() {
-    let score = document.getElementById('puntuacion').value;
-    let estrellas = "";
-    for (let i = 1; i <= 5; i++) {
-        if (i <= score) {
-            estrellas += `<i class="fas fa-star"></i>`;
-        } else {
-            estrellas += `<i class="far fa-star"></i>`;
-        }
-    }
-    document.getElementById('puntuacionEstrellas').innerHTML = estrellas;
-}
 
 function nombreUsuarioOpinion() {
     let nombreUsuario = document.getElementById('mostrarNombreUsuario');
