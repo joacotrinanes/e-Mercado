@@ -90,13 +90,13 @@ var saludarInvitado = function() {
         window.location.href = 'login.html';
 
     } else if (nombreRecordado !== '' && nombreNoRecordado == null && nombreGoogle == null) {
-        invitado.innerHTML = 'Hola ' + nombreRecordado + '! <i class="fa fa-user" aria-hidden="true"></i>';
+        invitado.innerHTML = ' <i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreRecordado + '!';
 
     } else if (nombreNoRecordado !== '' && nombreRecordado == null && nombreGoogle == null) {
-        invitado.innerHTML = 'Hola ' + nombreNoRecordado + '! <i class="fa fa-user" aria-hidden="true"></i>';
+        invitado.innerHTML = ' <i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreNoRecordado + '!';
 
     } else if (nombreGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
-        invitado.innerHTML = 'Hola ' + nombreGoogle + '! <i class="fa fa-user" aria-hidden="true"></i>';
+        invitado.innerHTML = '<i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreGoogle + '!';
 
     }
 };
