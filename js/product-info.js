@@ -80,16 +80,10 @@ function showRelatedProducts() {
     document.getElementById('relatedProducts').innerHTML = htmlContentToAppend;
 }
 
+
 function relatedProductsQuery() {
-    for (let i = 0; i < autosArray.length; i++) {
-        let auto = autosArray[i];
-        for (let j = 0; j < relatedProducts.length; j++) {
-            if (relatedProducts[j] == i) {
-                relatedProducts[j] = auto;
-            }
-        }
-
-
+    for (let i = 0; i < relatedProducts.length; i++) {
+        relatedProducts[i] = autosArray[relatedProducts[i]];
     }
 }
 
@@ -301,20 +295,20 @@ document.addEventListener("DOMContentLoaded", function(e) {
             showProductInfo();
 
         }
-    })
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        if (resultObj.status === 'ok') {
-            autosArray = resultObj.data;
-            relatedProductsQuery();
-            showProductInfo();
-            showRelatedProducts();
+    }).then(getJSONData(PRODUCTS_URL).then(function(resultObj) {
+            if (resultObj.status === 'ok') {
+                autosArray = resultObj.data;
+                relatedProductsQuery();
+                showProductInfo();
+                showRelatedProducts();
 
 
 
-        }
+            }
 
-    })
+        })
 
+    )
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
         if (resultObj.status === 'ok') {
             commentsArray = resultObj.data;
