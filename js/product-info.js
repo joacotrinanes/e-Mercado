@@ -295,20 +295,22 @@ document.addEventListener("DOMContentLoaded", function(e) {
             showProductInfo();
 
         }
-    }).then(getJSONData(PRODUCTS_URL).then(function(resultObj) {
-            if (resultObj.status === 'ok') {
-                autosArray = resultObj.data;
-                relatedProductsQuery();
-                showProductInfo();
-                showRelatedProducts();
+    })
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === 'ok') {
+            autosArray = resultObj.data;
+            relatedProductsQuery();
+            showProductInfo();
+            showRelatedProducts();
 
 
 
-            }
+        }
 
-        })
+    })
 
-    )
+
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
         if (resultObj.status === 'ok') {
             commentsArray = resultObj.data;
