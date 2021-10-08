@@ -6,7 +6,9 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
-
+const CART_INFO_2_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
+const CART_CURRENCY_RATES_URL = "http://data.fixer.io/api/latest?access_key=b99ae1914356422168da930b3162a0f3";
+const COUNTRIES_LIST_URL = "https://api.dhsprogram.com/rest/dhs/countries";
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
