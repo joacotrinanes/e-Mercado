@@ -11,7 +11,7 @@ var compraExitosa = '';
 
 
 /*Real time USD rate */
-var rateUSD = undefined;
+var rateUSD = 40;
 
 
 
