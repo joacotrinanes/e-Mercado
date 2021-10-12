@@ -284,23 +284,24 @@ const validatePurchase = () => {
     } else {
         return swal({
                 title: "¿Confirmar compra?",
-                icon: "warning",
+                icon: "info",
                 buttons: true,
-                dangerMode: true,
             })
-            .then((willDelete) => {
-                if (willDelete) {
+            .then((willBuy) => {
+                if (willBuy) {
                     swal(compraExitosa, {
                         icon: "success",
-                        dangerMode: true
-                    }).then((willDelete) => {
-                        if (willDelete) {
+                    }).then((willBuy) => {
+                        if (willBuy) {
                             window.location.href = 'index.html';
                         }
                     });
 
                 } else {
-                    swal("Compra cancelada", { icon: "warning" });
+                    swal("Compra cancelada", {
+                        icon: "warning",
+                        dangerMode: true
+                    });
                 }
             });
     }
