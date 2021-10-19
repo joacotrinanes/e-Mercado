@@ -35,17 +35,17 @@
                 </li>
             </ul>
         </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="invitado" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="invitado" data-bs-toggle="dropdown" aria-expanded="false">
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="invitado">
+            <ul class="dropdown-menu" aria-labelledby="invitado">
                 <li><a class="dropdown-item" href="my-profile.html" id='profile'><i class="fas fa-id-card" style="color:gray;"></i> Mi Perfil</a></li>
                 <li><a class="dropdown-item" href="cart.html" id='cart'><i class="fas fa-shopping-cart" style="color:gray;"></i> Mi Carrito </a></li>
-                    <li><a class="dropdown-item" href="login.html" id='cerrarSesion' onclick="desconectar();"><i class="fas fa-sign-out-alt" style="color:gray;"></i> Cerrar Sesión</a></li>
-                </ul>
-            </div>
+                <li><a class="dropdown-item" href="login.html" id='cerrarSesion' onclick="desconectar();"><i class="fas fa-sign-out-alt" style="color:gray;"></i> Cerrar Sesión</a></li>
+            </ul>
+        </div>
     </nav>
-    
+
     <main role="main" class='pb-5'>
         <div class="text-center p-4">
             <h2>Productos <img src="img/plan-ceibal.svg" width="50" height="50"></h2>
@@ -64,56 +64,57 @@
         </div>
         <div class='container'>
             <div class="row">
-                <div class="col text-right">
-
-                    <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                        <label class="btn btn-light active" id="sortAsc">
-                    <input type="radio" name="options" autocomplete="off" checked>A-Z
-                </label>
-                        <label class="btn btn-light" id="sortByRelevance">
-          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up"></i>Relevancia
-      </label>
-                        </label>
-                        <label class="btn btn-light" id="sortByPriceAsc">
-                  <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down-alt"></i>Precio
-              </label>
-                        <label class="btn btn-light" id="sortByPriceDesc">
-                  <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up"></i>Precio
-              </label>
+                <!--Desde aca-->
+                <div class="col-md-6 col-sm-6">
+                    <br><br><br>
+                    <div class="row">
+                        <form class="form-inline" role="search">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <input id="searchBar" class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
+                        </form>
                     </div>
-                    <div class="row justify-content-end">
-                        <div class="col-md-6">
-                            <!--Search bar-->
-                            <form class="form-inline" role="search">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                                <input id="searchBar" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
-                            </form>
+                </div>
 
+                <div class="col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="btn-group btn-group-toggle mb-4 text-right" data-toggle="buttons">
+                            <label class="btn btn-light active" id="sortAsc">
+                            <input type="radio" name="options" autocomplete="off" checked>A-Z
+                        </label>
+                            <label class="btn btn-light" id="sortByRelevance">
+                            <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up"></i>Relevancia
+                        </label>
+                            <label class="btn btn-light" id="sortByPriceAsc">
+                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down-alt"></i>Precio
+                      </label>
+                            <label class="btn btn-light" id="sortByPriceDesc">
+                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up"></i>Precio
+                      </label>
                         </div>
-                        <div class="col-md-6 col-sm-12 mb-1 container">
-                            <div class="row container p-0 m-0">
-
-                                <div class="col">
-                                    <p class="font-weight-normal text-right my-2">Cant.</p>
-                                </div>
-                                <div class="col">
-                                    <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin">
-                                </div>
-                                <div class="col">
-                                    <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
-                                </div>
-                                <div class="col col-sm-12">
-                                    <div class="btn-group" role="group">
-                                        <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
-                                        <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="row justify-content-right">
+                        <div class="col-3 col-sm-3 justify-content-right">
+                            <p class="font-weight-normal my-2">Cant.</p>
+                        </div>
+                        <div class="col-3 col-sm-3 justify-content-left">
+                            <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin">
+                        </div>
+                        <div class="col-3 col-sm-3 justify-content-left">
+                            <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
+                        </div>
+                        <div class="col-3 col-sm-3">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
+                                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class='container'>
             <div class="row">
+                <!--Hasta aca-->
                 <div class="list-group" id="prod-list-container">
                 </div>
                 <div class="album py-5 bg-light">
@@ -124,6 +125,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
 
 

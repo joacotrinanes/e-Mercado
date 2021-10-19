@@ -154,12 +154,8 @@ function promedioRatings() {
         sumatoria += comment.score;
     }
     let promedio = (sumatoria / commentsArray.length).toFixed(2);
-    let estrellas = `
-    <div class="col-sm-3"></div>
-    <div class="col-sm-1">
-    <h3>${promedio}</h3>
-    </div> 
-    <div class="col-sm-4" style="padding: 0%;">`;
+    let estrellas = '';
+
     for (let i = 1; i <= 5; i++) {
         if (i <= promedio) {
             estrellas += `<i class="fas fa-star"></i>`;
@@ -168,11 +164,12 @@ function promedioRatings() {
         }
     }
 
-    estrellas += `</div>`
+    let average = `<h3>${promedio}</h3>`;
     let promedioNumero = `
     <small>de promedio en ${commentsArray.length} respuestas</small>`;
 
-    document.getElementById('promedioRating').innerHTML = estrellas;
+    document.getElementById('estrellasRating').innerHTML = estrellas;
+    document.getElementById('promedioRating').innerHTML = average;
     document.getElementById('promedioRatingNumero').innerHTML = promedioNumero;
 
 }
