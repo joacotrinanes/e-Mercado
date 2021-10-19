@@ -43,14 +43,14 @@ function showProductInfo() {
     </div>
     <div class="card-body">
     <div class="row">
-      <div class="col col-8"><h2 style="font-family: 'Roboto Mono', monospace; font-weight: bolder;"> ${productCurrency} ${productCost}</h2></div>
-      <div class="col col-4"><h4 style="font-family: 'Lobster', cursive;">${soldCount} artículos vendidos</h4></div>
+      <div class="col-sm-8"><h2 style="font-family: 'Roboto Mono', monospace; font-weight: bolder;"> ${productCurrency} ${productCost}</h2></div>
+      <div class="col-sm-4"><h4 style="font-family: 'Lobster', cursive;">${soldCount} artículos vendidos</h4></div>
     </div>
     <div class="row" style="padding: 45px;">
        <p style="font-family: 'Dosis', sans-serif; color: black; font-weight: bold;">${description}</p> 
     </div>
     <div class="row">
-    <div class="col col-6"><small style="font-weight: bold;">Categoría: ${category}</small>
+    <div class="col-sm-6"><small style="font-weight: bold;">Categoría: ${category}</small>
     </div>
     </div>`
 
@@ -129,13 +129,13 @@ function showComments() {
         htmlContentToAppend += `
       <div class="list-group-item list-group-item-action">
       <div class="row">
-      <div class="col-6">
+      <div class="col-sm-6">
       <span class="starRating">${estrellas} </span><br>
       <span class="userComment">${comment.user}</span>      
       </div>
-      <div class="col-2">
+      <div class="col-sm-2">
       </div>
-      <div class="col-4" style="padding-right: 10px; text-align:right;">
+      <div class="col-sm-4" style="padding-right: 10px; text-align:right;">
       <small style="font-weight: bold;">${fechaSinHora}</small><br>
       <small>${horaSinFecha}</small>
       </div>
@@ -155,11 +155,11 @@ function promedioRatings() {
     }
     let promedio = (sumatoria / commentsArray.length).toFixed(2);
     let estrellas = `
-    <div class="col-3"></div>
-    <div class="col-1">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-1">
     <h3>${promedio}</h3>
     </div> 
-    <div class="col-4" style="padding: 0%;">`;
+    <div class="col-sm-4" style="padding: 0%;">`;
     for (let i = 1; i <= 5; i++) {
         if (i <= promedio) {
             estrellas += `<i class="fas fa-star"></i>`;

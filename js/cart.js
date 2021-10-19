@@ -60,8 +60,8 @@ const showCartItems = () => {
         <div class="list-group-item list-group-item-action">
         <div class="row">
         <div class="col-4">
-        <div class="container h-100 w-100">
-        <img src="${i.src}" class="h-100 w-100"></div>
+        <div class="container">
+        <img src="${i.src}" class="img-fluid" height="200" width="200"></div>
         </div>
         <div class="col-8">
         <div class="row justify-content-left">
