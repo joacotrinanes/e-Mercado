@@ -66,16 +66,6 @@
             <div class="row">
                 <!--Desde aca-->
                 <div class="col-md-6 col-sm-6">
-                    <br><br><br>
-                    <div class="row">
-                        <form class="form-inline" role="search">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                            <input id="searchBar" class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
-                        </form>
-                    </div>
-                </div><br>
-
-                <div class="col-md-6 col-sm-6">
                     <div class="row">
                         <div class="btn-group btn-group-toggle mb-4 text-right" data-toggle="buttons">
                             <label class="btn btn-light active" id="sortAsc">
@@ -93,16 +83,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-md-2 col-sm-2">
                             <p class="font-weight-normal my-2">Cant.</p>
                         </div>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin">
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin" style="width: 80%;">
                         </div>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax" style="width: 80%;">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-md-3 col-sm-4">
                             <div class="btn-group" role="group">
                                 <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
                                 <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
@@ -110,6 +100,18 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-3 col-sm-3"></div>
+                <div class="col-md-3 col-sm-3">
+                    <br>
+                    <div class="row">
+                        <form class="form-inline" role="search">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <input id="searchBar" class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
+                </div><br>
+
             </div>
         </div>
         <div class='container'>
