@@ -77,10 +77,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('imgPerfil')
-                .setAttribute('src', e.target.result)
-                .width(150)
-                .height(200);
+            document.getElementById('imgPerfil').setAttribute('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -91,19 +88,30 @@ function readURL(input) {
 const setDefaultImage = () => {
     let image = document.getElementById('imgPerfil');
     if (image.getAttribute('src') === '') {
-        image.setAttribute('src', 'https://lh3.googleusercontent.com/proxy/_ANnvQRzBG0Nf5F6xPyeoEDxWW7Otnz2h1Ahr7HCmYyP3TJ0juDEIDd177j_fBXwbHSUlC_f14GeHYEMB9_5eej9uPGSMasEiF5PxDPFUcJJrVP4')
+        image.setAttribute('src', 'https://cdn-icons-png.flaticon.com/512/149/149071.png')
     }
 }
 
 /*Transformations to save image in LocalStorage */
 const getBase64Image = (img) => {
+
     var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+
+
+
+    if (img.width > 200) {
+        canvas.width = img.width * 2.5;
+        canvas.height = img.height * 2.5;
+
+    } else {
+        canvas.width = img.width * 1.5;
+        canvas.height = img.height * 1.5;
+    }
+
+
 
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
-
     var dataURL = canvas.toDataURL("image/png");
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");

@@ -60,19 +60,18 @@ const showCartItems = () => {
         <div class="list-group-item list-group-item-action">
         <div class="row">
         <div class="col-4">
-        <div class="container">
-        <img src="${i.src}" class="img-fluid" height="200" width="200"></div>
+        <img src="${i.src}" class="img-fluid" style="max-width: 100%; max-height: 100%">
         </div>
         <div class="col-8">
         <div class="row justify-content-left">
         <div class="col-8">
         <h4>${i.name}<h4>
         </div>
-        <div class="col-4" style="text-align: right;">
+        <div class="col-4 p-0" style="text-align: right;">
         <span class="subtotalItem" style="font-weight: bold;">${i.currency} ${quantityProductCart[j] * i.unitCost}</span>
         </div>
         </div>
-        <div class="row justify-content-left">
+        <div class="row">
         <small>Cantidad de articulos:  <input name="quantity" type="number" min="1" value="${quantityProductCart[j]}" onchange="updateQuantityProd(); subTotalList(); showDeliveryCost(); showTotalCost();" style="width: 40px; border-color: transparent"></small>
         </div>
         <div class="row">
