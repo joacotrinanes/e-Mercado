@@ -63,11 +63,12 @@ const showCartItems = () => {
         <img src="${i.src}" class="img-fluid" style="max-width: 100%; max-height: 100%">
         </div>
         <div class="col-8">
-        <div class="row justify-content-left">
-        <div class="col-8">
+        <div class="row">
+        <div class="col-sm-8 p-0">
         <h4>${i.name}<h4>
         </div>
-        <div class="col-4 p-0" style="text-align: right;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 p-0"">
         <span class="subtotalItem" style="font-weight: bold;">${i.currency} ${quantityProductCart[j] * i.unitCost}</span>
         </div>
         </div>
