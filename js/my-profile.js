@@ -103,9 +103,12 @@ const getBase64Image = (img) => {
         canvas.width = img.width * 2.5;
         canvas.height = img.height * 2.5;
 
-    } else {
+    } else if (img.width < 200 && img.width > 150) {
         canvas.width = img.width * 1.5;
         canvas.height = img.height * 1.5;
+    } else {
+        canvas.width = img.width * 3;
+        canvas.height = img.height * 3;
     }
 
 
