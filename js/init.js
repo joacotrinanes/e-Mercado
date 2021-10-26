@@ -48,11 +48,21 @@ var getJSONData = function(url) {
 
 var cerrarSesion = document.getElementById('cerrarSesion');
 var invitado = document.getElementById('invitado');
-var nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
-var nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-var nombreGoogle = JSON.parse(sessionStorage.getItem('usuarioGoogle'));
+var datosNoRecordados = JSON.parse(sessionStorage.getItem('datosUsuario'));
+var datosRecordados = JSON.parse(localStorage.getItem('datosUsuario'));
 
 
+
+//Data Input in login
+var userData = {};
+
+const getInputDataInLogin = () => {
+    if (datosNoRecordados !== null) {
+        userData = datosNoRecordados;
+    } else {
+        userData = datosRecordados;
+    }
+}
 
 
 var desconectar = function() {
@@ -88,17 +98,11 @@ function onLoad() {
 
 var saludarInvitado = function() {
 
-    if (nombreNoRecordado == null && nombreRecordado == null && nombreGoogle == null) {
+    if (userData == undefined) {
         window.location.href = 'login.html';
 
-    } else if (nombreRecordado !== '' && nombreNoRecordado == null && nombreGoogle == null) {
-        invitado.innerHTML = ' <i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreRecordado + '!';
-
-    } else if (nombreNoRecordado !== '' && nombreRecordado == null && nombreGoogle == null) {
-        invitado.innerHTML = ' <i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreNoRecordado + '!';
-
-    } else if (nombreGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
-        invitado.innerHTML = '<i class="fa fa-user" aria-hidden="true"></i> Hola ' + nombreGoogle + '!';
+    } else {
+        invitado.innerHTML = ' <i class="fa fa-user" aria-hidden="true"></i> Hola ' + userData.usuario + '!';
 
     }
 };
@@ -112,7 +116,9 @@ var saludarInvitado = function() {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
-    document.body.addEventListener('load', saludarInvitado());
+    getInputDataInLogin();
+    saludarInvitado();
+
 
 
 });

@@ -19,8 +19,9 @@ function onSignIn(googleUser) {
     let datosGoogle = {};
     datosGoogle.usuarioGoogle = profile.getName();
     datosGoogle.estado = 'conectado';
-    sessionStorage.setItem('usuarioGoogle', JSON.stringify(datosGoogle.usuarioGoogle));
-    sessionStorage.setItem('estado', JSON.stringify(datosGoogle.estado));
+    datos.usuario = datosGoogle.usuarioGoogle;
+    datos.estado = datosGoogle.estado;
+    sessionStorage.setItem('datosUsuario', JSON.stringify(datos));
 
     window.location.href = 'index.html';
 
@@ -52,9 +53,8 @@ function verificar() {
             datos.contraseña = contraseña.value;
             datos.estado = 'conectado';
 
-            localStorage.setItem('usuario', JSON.stringify(datos.usuario));
-            localStorage.setItem('contraseña', JSON.stringify(datos.contraseña));
-            localStorage.setItem('estado', JSON.stringify(datos.estado));
+            localStorage.setItem('datosUsuario', JSON.stringify(datos));
+            localStorage.setItem('recordar', JSON.stringify(true));
             window.location.href = 'index.html';
 
         } else {
@@ -62,9 +62,8 @@ function verificar() {
             datos.contraseña = contraseña.value;
             datos.estado = 'conectado';
 
-            sessionStorage.setItem('usuario', JSON.stringify(datos.usuario));
-            sessionStorage.setItem('contraseña', JSON.stringify(contraseña.value));
-            sessionStorage.setItem('estado', JSON.stringify(datos.estado));
+            sessionStorage.setItem('datosUsuario', JSON.stringify(datos));
+            localStorage.setItem('recordar', JSON.stringify(false));
             window.location.href = 'index.html';
         }
     }
@@ -83,14 +82,23 @@ function recordarUsuario() {
 
 
 // Si continua conectado
-
+/*Arreglar funcion conectado */
 var conectado = function() {
-    let estadoLocalStorage = JSON.parse(localStorage.getItem('estado'));
-    let estadoSessionStorage = JSON.parse(sessionStorage.getItem('estado'))
-
-    if (estadoLocalStorage === 'conectado' || estadoSessionStorage === 'conectado') {
-        window.location.href = 'index.html';
+    let currentRemember = JSON.parse(localStorage.getItem('recordar'));
+    let datosLocalStorage = JSON.parse(localStorage.getItem('datosUsuario'));
+    let datosSessionStorage = JSON.parse(sessionStorage.getItem('datosUsuario'));
+    if (currentRemember != undefined) {
+        if (currentRemember) {
+            if (datosLocalStorage.estado != undefined) {
+                window.location.href = 'index.html';
+            }
+        } else {
+            if (datosSessionStorage.estado != undefined) {
+                window.location.href = 'index.html';
+            }
+        }
     }
+
 
 };
 

@@ -1,6 +1,3 @@
-let datosUsuario = {};
-
-
 /* Input variables*/
 let nameProfile = document.getElementById('nombrePerfil');
 let lastNames = document.getElementById('apellidosPerfil');
@@ -8,27 +5,55 @@ let age = document.getElementById('edad');
 let email = document.getElementById('emailPerfil');
 let telephone = document.getElementById('telefono');
 let image = document.getElementById('imgPerfil');
-//let imgInBase64 = getBase64Image(image);
+let file = document.getElementById('establecerImagenPerfil');
 
-/*LocalStorage variables*/
-let savedName = JSON.parse(localStorage.getItem('name'));
-let savedLastNames = JSON.parse(localStorage.getItem('lastNames'));
-let savedAge = parseInt(JSON.parse(localStorage.getItem('age')));
-let savedEmail = JSON.parse(localStorage.getItem('email'));
-let savedTelephone = JSON.parse(localStorage.getItem('telephone'));
-let savedImage = localStorage.getItem('image');
+
+//Get username and password provided in login
+let datosUsuario = {};
+let recordar = JSON.parse(localStorage.getItem('recordar'));
+let datosContactoUsuarioGuardados = JSON.parse(localStorage.getItem('datosContactoUsuario'));
+
+
+const getUserLoginInfo = () => {
+    if (recordar == true) {
+        datosUsuario.usuario = JSON.parse(localStorage.getItem('datosUsuario'));
+        if (datosContactoUsuarioGuardados != undefined) {
+            datosUsuario.datosContacto = datosContactoUsuarioGuardados;
+
+        }
+    } else {
+        datosUsuario.usuario = JSON.parse(sessionStorage.getItem('datosUsuario'));
+        if (datosContactoUsuarioGuardados != undefined) {
+            datosUsuario.datosContacto = datosContactoUsuarioGuardados;
+
+        }
+    }
+}
 
 const verificar = () => {
-    if (savedName !== null) {
-        nameProfile.value = savedName;
-        lastNames.value = savedLastNames;
-        age.value = savedAge;
-        email.value = savedEmail;
-        telephone.value = savedTelephone;
-        image.src = "data:image/png;base64," + savedImage;
+    if (datosContactoUsuarioGuardados == undefined) {
+
+        nameProfile.value = '';
+        lastNames.value = '';
+        age.value = '';
+        email.value = '';
+        telephone.value = '';
+        image.setAttribute('src', 'https://cdn-icons-png.flaticon.com/512/149/149071.png');
+
+    } else {
+
+        nameProfile.value = datosUsuario.datosContacto.name;
+        lastNames.value = datosUsuario.datosContacto.lastNames;
+        age.value = datosUsuario.datosContacto.age;
+        email.value = datosUsuario.datosContacto.email;
+        telephone.value = datosUsuario.datosContacto.telephone;
+        image.src = datosUsuario.datosContacto.image;
+
 
     }
 }
+
+
 
 
 const guardarCambios = () => {
@@ -47,19 +72,19 @@ const guardarCambios = () => {
             button: 'Ok'
         });
     } else {
-        datosUsuario.name = nameProfile.value;
-        datosUsuario.lastNames = lastNames.value;
-        datosUsuario.age = age.value;
-        datosUsuario.email = email.value;
-        datosUsuario.telephone = telephone.value;
-        datosUsuario.image = getBase64Image(image);
 
-        localStorage.setItem('name', JSON.stringify(datosUsuario.name));
-        localStorage.setItem('lastNames', JSON.stringify(datosUsuario.lastNames));
-        localStorage.setItem('age', JSON.stringify(datosUsuario.age));
-        localStorage.setItem('email', JSON.stringify(datosUsuario.email));
-        localStorage.setItem('telephone', JSON.stringify(datosUsuario.telephone));
-        localStorage.setItem('image', getBase64Image(image));
+        datosUsuario.datosContacto = {
+            "name": nameProfile.value,
+            'lastNames': lastNames.value,
+            'age': age.value,
+            'email': email.value,
+            'telephone': telephone.value,
+            'image': image.src
+        }
+
+
+        localStorage.setItem('datosContactoUsuario', JSON.stringify(datosUsuario.datosContacto));
+        localStorage.setItem('userCompleteInformation', JSON.stringify(datosUsuario));
 
         return swal({
             title: "Cambios guardados",
@@ -73,53 +98,21 @@ const guardarCambios = () => {
 }
 
 /*Read image as URL*/
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('imgPerfil').setAttribute('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
+const previewFile = () => {
+    let reader = new FileReader();
+
+    reader.onloadend = function() {
+        image.src = reader.result;
     }
-}
 
-/*While image has not been set*/
-
-const setDefaultImage = () => {
-    let image = document.getElementById('imgPerfil');
-    if (image.getAttribute('src') === '') {
-        image.setAttribute('src', 'https://cdn-icons-png.flaticon.com/512/149/149071.png')
-    }
-}
-
-/*Transformations to save image in LocalStorage */
-const getBase64Image = (img) => {
-
-    var canvas = document.createElement("canvas");
-
-
-
-    if (img.width > 200) {
-        canvas.width = img.width * 2.5;
-        canvas.height = img.height * 2.5;
-
-    } else if (img.width < 200 && img.width > 150) {
-        canvas.width = img.width * 1.5;
-        canvas.height = img.height * 1.5;
+    if (file.files[0]) {
+        reader.readAsDataURL(file.files[0]);
     } else {
-        canvas.width = img.width * 3;
-        canvas.height = img.height * 3;
+        image.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
     }
 
 
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
-
 
 
 
@@ -127,7 +120,8 @@ const getBase64Image = (img) => {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
-    setDefaultImage();
+
+    getUserLoginInfo();
     verificar();
 
     document.getElementById('saveChanges').addEventListener('click', () => {
