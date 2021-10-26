@@ -179,18 +179,15 @@ function promedioRatings() {
 
 function nombreUsuarioOpinion() {
     let nombreUsuario = document.getElementById('mostrarNombreUsuario');
-    let nombreNoRecordado = JSON.parse(sessionStorage.getItem('usuario'));
-    let nombreRecordado = JSON.parse(localStorage.getItem('usuario'));
-    let nombreGoogle = JSON.parse(sessionStorage.getItem('usuarioGoogle'));
+    let usuarioNoRecordado = JSON.parse(sessionStorage.getItem('datosUsuario'));
+    let usuarioRecordado = JSON.parse(localStorage.getItem('datosUsuario'));
 
-    if (nombreRecordado !== '' && nombreNoRecordado == null && nombreGoogle == null) {
-        nombreUsuario.innerHTML = nombreRecordado;
 
-    } else if (nombreNoRecordado !== '' && nombreRecordado == null && nombreGoogle == null) {
-        nombreUsuario.innerHTML = nombreNoRecordado;
+    if (usuarioRecordado !== null) {
+        nombreUsuario.innerHTML = usuarioRecordado.usuario;
 
-    } else if (nombreGoogle !== '' && nombreRecordado == null && nombreNoRecordado == null) {
-        nombreUsuario.innerHTML = nombreGoogle;
+    } else if (usuarioNoRecordado !== null) {
+        nombreUsuario.innerHTML = usuarioNoRecordado.usuario;
 
     }
 
