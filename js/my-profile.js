@@ -38,7 +38,7 @@ const verificar = () => {
         age.value = '';
         email.value = '';
         telephone.value = '';
-        image.setAttribute('src', '/img/user_placeholder.png');
+        image.setAttribute('src', './img/user_placeholder.png');
 
     } else {
 
@@ -108,7 +108,7 @@ const previewFile = () => {
     if (file.files[0]) {
         reader.readAsDataURL(file.files[0]);
     } else {
-        image.src = '/img/user_placeholder.png';
+        image.src = './img/user_placeholder.png';
     }
 
 
