@@ -38,7 +38,7 @@ const verificar = () => {
         age.value = '';
         email.value = '';
         telephone.value = '';
-        image.setAttribute('src', 'https://cdn-icons-png.flaticon.com/512/149/149071.png');
+        image.setAttribute('src', '/img/user_placeholder.png');
 
     } else {
 
