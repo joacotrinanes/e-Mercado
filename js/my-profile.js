@@ -108,7 +108,7 @@ const previewFile = () => {
     if (file.files[0]) {
         reader.readAsDataURL(file.files[0]);
     } else {
-        image.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+        image.src = '/img/user_placeholder.png';
     }
 
 
