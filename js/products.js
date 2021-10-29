@@ -68,15 +68,15 @@ function showProductsList(array) {
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+                        <img src="${product.imgSrc}" alt="${product.description}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">` + product.name + `</h4>
-                            <small class="text-muted">` + product.soldCount + ` artículos vendidos</small>
+                            <h4 class="mb-1">${product.name}</h4>
+                            <small class="text-muted">${product.soldCount} artículos vendidos</small>
                         </div>
-                        <p class="mb-1">` + product.description + `</p><br>
-                        <h2> USD ` + product.cost + `<h2>
+                        <p class="mb-1">${product.description}</p><br>
+                        <h2> ${product.currency} ${product.cost}<h2>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@ function showProductsList(array) {
                                       <div class="col col-5">                                      
                                       <small class="card-text text-right">${product.soldCount} articulos vendidos</small>
                                       </div></div><br>
-                                      <h2 style="text-weight: bold;"> USD ${product.cost}</h2> 
+                                      <h2 style="text-weight: bold;"> ${product.currency} ${product.cost}</h2> 
                                       <br>
                                       <p class="card-text">${product.description}<p>                                                                                                                                      
                                       </div>
