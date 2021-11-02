@@ -14,7 +14,7 @@ var compraExitosa = '';
 var rateUSD = 40;
 
 
-
+/*Change Currency Display*/
 const changeCurrencyDisplay = (array) => {
     array.forEach(i => {
         if (i.currency === 'USD') {
@@ -25,31 +25,43 @@ const changeCurrencyDisplay = (array) => {
     })
 };
 
+/*Get quantities of JSON and push them to quantityProductCart array */
 const getQuantitiesProducts = () => {
     cartInfoArticles.forEach(i => {
         quantityProductCart.push(i.count);
     })
 }
 
+/*Get changes in quantity input and update quantityProductCart array*/
 const updateQuantityProd = () => {
     let values = document.getElementsByName('quantity');
     let i = 0;
     values.forEach(() => {
-        quantityProductCart[i] = values[i].value;
-        i++;
+        if (values[i].value > 0) {
+            quantityProductCart[i] = values[i].value;
+            i++;
+        } else {
+            quantityProductCart[i] = quantityProductCart[i];
+            return swal({
+                text: "Cantidades de artículos deben ser mayor a 0",
+                icon: 'error',
+                button: 'Ok'
+            })
+        }
     })
     showCartItems();
 }
 
+/*Get quantity of different items in cart */
 const cartItemsQuantity = () => {
     let counter = 0;
     cartInfoArticles.forEach(() => {
         counter++;
     })
     document.getElementById('numberItems').innerHTML = `Artículos: <strong>${counter}</strong>`;
-}
+};
 
-
+/*Show Items list */
 const showCartItems = () => {
 
 
@@ -63,21 +75,23 @@ const showCartItems = () => {
         <img src="${i.src}" class="img-fluid" style="max-width: 100%; max-height: 100%">
         </div>
         <div class="col-8">
+        <div class="d-flex flex-row-reverse" style="text-align: right;">
+        <div class="removeCartItem" onclick="deleteCartItem(${j});"><i class="fa fa-times"></i></div>
+        </div>
         <div class="row">
         <div class="col-sm-8 p-0">
         <h4>${i.name}<h4>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2 p-0"">
+        </div> 
+        <div class="row">
         <span class="subtotalItem" style="font-weight: bold;">${i.currency} ${quantityProductCart[j] * i.unitCost}</span>
-        </div>
         </div>
         <div class="row">
         <small>Cantidad de articulos:  <input name="quantity" type="number" min="1" value="${quantityProductCart[j]}" onchange="updateQuantityProd(); subTotalList(); showDeliveryCost(); showTotalCost();" style="width: 40px; border-color: transparent"></small>
         </div>
         <div class="row">
         <small>Precio Unitario: <span style="font-weight: bold">${i.currency} ${i.unitCost}</span></small>
-        </div>   
+        </div> 
         </div>
         </div>
         </div>
@@ -88,6 +102,19 @@ const showCartItems = () => {
     });
     document.getElementById('cartInfo').innerHTML = htmlContentToAppend;
 };
+
+/*Delete items of cart*/
+const deleteCartItem = (e) => {
+
+    cartInfoArticles.splice(e, 1);
+    quantityProductCart.splice(e, 1);
+    cartItemsQuantity();
+    showCartItems();
+    subTotalList();
+    showDeliveryCost();
+    showTotalCost();
+
+}
 
 
 /*Currency Display*/
@@ -193,7 +220,7 @@ const getTypeDelivery = () => {
         delivery.percentageCharge = 0.05;
         delivery.deliveryType = 'Standard'
     }
-    return delivery;
+
 }
 
 const showDeliveryCost = () => {
@@ -247,13 +274,73 @@ const showTotalCost = () => {
 /*Country Select*/
 
 const showCountriesList = () => {
-    htmlContentToAppend = '<option id="default" value="none" disabled selected>Elija su país</option>';
+    htmlContentToAppend = '<option id="default" value="" disabled selected>Elija su país</option>';
     countriesArray.forEach(i => {
         htmlContentToAppend += `
         <option id="${i.UNAIDS_CountryCode}">${i.CountryName}</option>`
     })
     document.getElementById('paises').innerHTML = htmlContentToAppend;
 }
+
+
+
+/*Payment Methods*/
+var paymentMethodSelected = false;
+var paymentOptionSelected = document.getElementById('paymentOptionSelected');
+var paymentInformation = {};
+
+
+/*Credit Card Inputs */
+var creditCardName = document.getElementById('titularTarjeta');
+var creditCardNumber = document.getElementById('numeroTarjeta');
+var monthExpireDate = document.getElementById('mesVencimiento');
+var yearExpireDate = document.getElementById('añoVencimiento');
+var cvv = document.getElementById('cvv');
+var creditCardForm = document.getElementById('creditCardForm');
+
+/*Bank Transfer Inputs*/
+var bankOptions = document.getElementById('banco');
+var bankClientName = document.getElementById('titularCuenta');
+var bankAccountNumber = document.getElementById('bankAccount');
+var bankTransferForm = document.getElementById('bankTransferForm');
+
+
+const verifyCreditCard = () => {
+    creditCardForm.classList.add('was-validated');
+    if (creditCardForm.checkValidity()) {
+        paymentInformation.paymentMethodSelected = 'Tarjeta de Crédito';
+        paymentInformation.creditCardName = creditCardName.value;
+        paymentInformation.creditCardNumber = creditCardNumber.value;
+        paymentInformation.monthExpireDate = monthExpireDate.value;
+        paymentInformation.yearExpireDate = yearExpireDate.value;
+        paymentInformation.cvv = cvv.value;
+        creditCardForm.classList.remove('was-validated');
+
+        paymentOptionSelected.innerHTML = `<li><small>${paymentInformation.paymentMethodSelected}</small></li>`;
+        paymentMethodSelected = true;
+    }
+
+}
+
+const verifyBank = () => {
+    bankTransferForm.classList.add('was-validated');
+    if (bankTransferForm.checkValidity()) {
+
+        //Bank selection changes whenever a change occurs in selected option (it´s on DOM Load) 
+        paymentInformation.paymentMethodSelected = 'Transferencia Bancaria';
+        paymentInformation.bankClientName = bankClientName.value;
+        paymentInformation.bankAccountNumber = bankAccountNumber.value;
+
+        bankTransferForm.classList.remove('was-validated');
+
+        paymentOptionSelected.innerHTML = `<li><small>${paymentInformation.paymentMethodSelected}</small></li>`;
+        paymentMethodSelected = true;
+    }
+
+}
+
+
+
 
 /*On Purchase */
 var calle = document.getElementById('calle');
@@ -262,10 +349,40 @@ var esquina = document.getElementById('esquina');
 var pais = document.getElementsByName('opcionesPaises')[0];
 
 const validatePurchase = () => {
-    if ((calle.value.trim() === '' || numeroCalle.value.trim() === '' || esquina.value.trim() === '' || pais.value === 'none') && deliveryOptionChecked === undefined) {
+    document.getElementById('direccionEnvioForm').classList.add('was-validated');
+    document.getElementById('tipoEnvioForm').classList.add('was-validated');
+
+    if ((calle.value.trim() === '' || numeroCalle.value.trim() === '' || esquina.value.trim() === '' || pais.value === 'none') && deliveryOptionChecked === undefined && paymentMethodSelected === false) {
+        return swal({
+            title: "Completar todos los datos",
+            text: "Completar todos los campos de su dirección, \n seleccione tipo de envío y método de pago",
+            icon: 'error',
+            button: 'Ok'
+        });
+    } else if ((calle.value.trim() === '' || numeroCalle.value.trim() === '' || esquina.value.trim() === '' || pais.value === 'none') && deliveryOptionChecked === undefined) {
         return swal({
             title: "Completar todos los datos",
             text: "Completar todos los campos de su dirección y \n seleccione tipo de envío",
+            icon: 'error',
+            button: 'Ok'
+        });
+    } else if ((calle.value.trim() === '' || numeroCalle.value.trim() === '' || esquina.value.trim() === '' || pais.value === 'none') && paymentMethodSelected === false) {
+        return swal({
+            title: "Completar todos los datos",
+            text: "Completar todos los campos de su dirección y \n seleccione método de pago",
+            icon: 'error',
+            button: 'Ok'
+        });
+    } else if (deliveryOptionChecked === undefined && paymentMethodSelected === false) {
+        //información de dirección de envío en objeto delivery
+        delivery.calleDireccion = calle.value;
+        delivery.nroCalleDireccion = numeroCalle.value;
+        delivery.esquinaDireccion = esquina.value;
+
+
+        return swal({
+            title: "Completar todos los datos",
+            text: "Seleccione tipo de envío y método de pago",
             icon: 'error',
             button: 'Ok'
         });
@@ -281,7 +398,28 @@ const validatePurchase = () => {
             icon: 'error',
             button: 'Ok'
         });
+    } else if (paymentMethodSelected === false) {
+        //información de dirección de envío en objeto delivery
+        delivery.calleDireccion = calle.value;
+        delivery.nroCalleDireccion = numeroCalle.value;
+        delivery.esquinaDireccion = esquina.value;
+
+
+        return swal({
+            title: "Seleccionar método de pago",
+            icon: 'error',
+            button: 'Ok'
+        });
     } else {
+        //información de dirección de envío en objeto delivery
+        delivery.calleDireccion = calle.value;
+        delivery.nroCalleDireccion = numeroCalle.value;
+        delivery.esquinaDireccion = esquina.value;
+
+        document.getElementById('direccionEnvioForm').classList.remove('was-validated');
+        document.getElementById('tipoEnvioForm').classList.remove('was-validated');
+
+
         return swal({
                 title: "¿Confirmar compra?",
                 icon: "info",
@@ -374,7 +512,22 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('comprar').addEventListener('click', () => {
         validatePurchase();
 
-    })
+    });
 
+    document.getElementById('confirmarDatosBanco').addEventListener('click', () => {
+        verifyBank();
+    });
+
+    document.getElementById('confirmarDatosTarjeta').addEventListener('click', () => {
+        verifyCreditCard();
+    });
+
+    document.getElementById('banco').addEventListener('change', (e) => {
+        paymentInformation.bankSelected = e.target.selectedOptions[0].text;
+    });
+
+    document.getElementById('paises').addEventListener('change', (e) => {
+        delivery.paisDireccion = e.target.selectedOptions[0].text;
+    });
 
 });

@@ -9,26 +9,14 @@
     <meta name="description" content="">
     <title>eMercado - Todo lo que busques está aquí</title>
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/cart-style.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -54,17 +42,17 @@
                 </li>
             </ul>
         </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="invitado" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="invitado" data-bs-toggle="dropdown" aria-expanded="false">
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="invitado">
-                    <li><a class="dropdown-item" href="my-profile.html" id='profile'><i class="fas fa-id-card" style="color:gray;"></i> Mi Perfil</a></li>
-                    <li><a class="dropdown-item" href="cart.html" id='cart'><i class="fas fa-shopping-cart" style="color:gray;"></i> Mi Carrito</a></li>
-                    <li>
-                        <a class="dropdown-item" href="login.html" id='cerrarSesion' onclick="desconectar();"> <i class="fas fa-sign-out-alt" style="color:gray;"></i> Cerrar Sesión</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="dropdown-menu" aria-labelledby="invitado">
+                <li><a class="dropdown-item" href="my-profile.html" id='profile'><i class="fas fa-id-card" style="color:gray;"></i> Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="cart.html" id='cart'><i class="fas fa-shopping-cart" style="color:gray;"></i> Mi Carrito</a></li>
+                <li>
+                    <a class="dropdown-item" href="login.html" id='cerrarSesion' onclick="desconectar();"> <i class="fas fa-sign-out-alt" style="color:gray;"></i> Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <div class="container p-5">
         <div class="container">
@@ -89,9 +77,9 @@
 
                     <br>
                     <div class="row">
-                        <form style="margin-left: 10%;">
+                        <form style="margin-left: 10%;" onsubmit="event.preventDefault()" id="tipoEnvioForm" novalidate>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="tiposEnvio" id="premium" value="1">
+                                <input class="form-check-input" type="radio" name="tiposEnvio" id="premium" value="1" required>
                                 <label class="form-check-label" for="premium">Premium (2-5 días) - Costo del 15% sobre el subtotal</label>
                             </div>
 
@@ -103,6 +91,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tiposEnvio" id="standard" value="3">
                                 <label class="form-check-label" for="standard">Standard (12 a 15 días) - Costo del 5% sobre el subtotal</label>
+                                <div class="invalid-feedback">Selecciona el tipo de envío</div>
                             </div>
                         </form>
                     </div>
@@ -113,14 +102,14 @@
                         <h5>Dirección de envío:</h5>
                     </div><br>
                     <div class="row">
-                        <form style="margin-left: 10%;">
+                        <form style="margin-left: 10%;" onsubmit="event.preventDefault()" id="direccionEnvioForm" novalidate>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-4">
                                         <label for="paises">País:</label>
                                     </div>
                                     <div class="col-8">
-                                        <select class="form-control" name="opcionesPaises" id="paises">
+                                        <select class="form-control" name="opcionesPaises" id="paises" required>
                                             
                                         </select>
                                     </div>
@@ -129,21 +118,35 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-4"><label for="calle">Calle: </label></div>
-                                    <div class="col-8"><input id="calle" class="form-control" type="text"></div>
+                                    <div class="col-8"><input id="calle" class="form-control" type="text" required></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-4"><label for="numeroCalle">Número: </label></div>
-                                    <div class="col-4"><input id="numeroCalle" class="form-control" type="number"></div>
+                                    <div class="col-4"><input id="numeroCalle" class="form-control" type="text" required></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-4"><label for="esquina">Esquina: </label></div>
-                                    <div class="col-8"><input id="esquina" class="form-control" type="text"></div>
+                                    <div class="col-8"><input id="esquina" class="form-control" type="text" required></div>
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h5>Método de pago: </h5>
+                        </div>
+                        <div class="col-sm-8">
+                            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#metodoPago">
+                                Seleccionar
+                            </button>
+
+                        </div>
+                    </div><br>
                 </div>
             </div>
             <div class="col-sm-3" style="background-color:rgb(205, 221, 220);color:black; border-radius: 2%;">
@@ -171,20 +174,28 @@
                     <small id="cotizacion" style="text-align: center; padding: 2%; font-weight: bold"></small>
                 </div>
                 <hr>
-                <div class="row" style="padding-left: 8%;">
-                    <div class="row">
-                        <strong style="color: rgb(52,131,250);">SubTotal: <small style="color: black; font-weight: bold;" id="subTotalAmount"></small></strong>
-                    </div>
+                <div class="row" style="padding-left: 2%;">
 
-                    <div class="row">
-                        <ul id="subTotalList"></ul>
-                    </div>
+                    <strong style="color: rgb(52,131,250);">SubTotal: <small style="color: black; font-weight: bold;" id="subTotalAmount"></small></strong>
                 </div>
+
+                <div class="row">
+                    <ul id="subTotalList"></ul>
+                </div>
+
                 <hr>
                 <div class="row" style="padding-left: 2%;">
                     <strong style="color: rgb(52,131,250);">Costo Envío: <small style="color: black; font-weight: bold;" id="totalDeliveryCost"></small></strong>
-                    <br>
+                </div>
+                <div class="row">
                     <ul id="envio"></ul>
+                </div>
+                <hr>
+                <div class="row" style="padding-left: 2%;">
+                    <strong style="color: rgb(52,131,250);">Método de Pago:</strong>
+                </div>
+                <div class="row">
+                    <ul id="paymentOptionSelected"></ul>
                 </div>
                 <hr>
                 <div class="row" style="padding-left: 2%;">
@@ -205,13 +216,139 @@
             <div></div>
         </div>
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/dropzone.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/init.js"></script>
-    <script src="js/cart.js"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="metodoPago" tabindex="-1" aria-labelledby="pagoModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pagoModal">Método de Pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                                <!-- Payment form tabs -->
+                                <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                    <li class="nav-item">
+                                        <a data-toggle="pill" href="#credit-card" class="nav-link active"> <i class="fas fa-credit-card mr-2"></i> Tarjeta de Crédito </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-toggle="pill" href="#net-banking" class="nav-link"> <i class="fas fa-landmark mr-2"></i> Transferencia Bancaria </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End -->
+                            <!-- Formulario tarjeta de crédito -->
+                            <div class="tab-content">
+                                <!-- Info Tarjeta-->
+                                <div id="credit-card" class="tab-pane fade show active pt-3">
+                                    <form role="form" onsubmit="event.preventDefault()" id="creditCardForm" novalidate>
+                                        <div class="form-group">
+                                            <label for="titularTarjeta">
+                                                <h6>Titular de la Tarjeta</h6>
+                                            </label>
+                                            <input type="text" name="titularTarjeta" id="titularTarjeta" placeholder="Nombre Titular" required class="form-control ">
+                                            <div class="invalid-feedback">Proporciona el Titular de la Tarjeta</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numeroTarjeta">
+                                                <h6>Número Tarjeta</h6>
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" id="numeroTarjeta" name="numeroTarjeta" placeholder="Número Tarjeta" class="form-control " required>
+                                                <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
+                                                <div class="invalid-feedback">Proporciona el Número de la Tarjeta</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <span class="hidden-xs">
+                                                        <h6>Fecha de Vencimiento</h6>
+                                                        </span>
+                                                    </label>
+                                                    <div class="input-group"> <input type="number" id="mesVencimiento" placeholder="MM" class="form-control" min="01" max="12" required>
+                                                        <input type="number" id="añoVencimiento" placeholder="YY" class="form-control" required min="21" max="50">
+                                                        <div class="invalid-feedback">Proporciona el Mes y Año de Vencimiento</div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-4">
+                                                    <label data-toggle="tooltip" title="Código CVV de 3 dígitos en reverso de la tarjeta">
+                                                        <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                                    </label> <input type="text" required class="form-control" id="cvv" maxlength="3" minlength="3">
+                                                    <div class="invalid-feedback">Proporciona el código CVV</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" class="subscribe btn btn-success btn-block shadow-sm" id="confirmarDatosTarjeta"> Confirmar Datos </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Transferencia bancaria -->
+                                <div id="net-banking" class="tab-pane fade pt-3">
+                                    <form role="form" onsubmit="event.preventDefault()" novalidate id="bankTransferForm">
+                                        <div class="form-group ">
+                                            <label for="Select Your Bank">
+                                            <h6>Seleccione su Banco</h6>
+                                            </label>
+                                            <select class="form-control" id="banco" required>
+                                        <option value="" selected disabled>--Seleccione su Banco--</option>
+                                        <option value="">BROU</option>
+                                        <option value="">Itaú</option>
+                                        <option value="">Santander</option>
+                                        <option value="">BBVA</option>
+                                        <option value="">ScotiaBank</option>
+                                            </select>
+                                            <div class="invalid-feedback">Indique su Banco</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="titularCuenta">
+                                            <h6>Titular de la Cuenta</h6>
+                                            </label>
+                                            <input type="text" name="titularCuenta" id="titularCuenta" placeholder="Nombre Titular" required class="form-control">
+                                            <div class="invalid-feedback">Proporciona el Titular de la Cuenta</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bankAccount">
+                                            <h6>Número de Cuenta</h6>
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="number" name="bankAccount" id="bankAccount" placeholder="Número de Cuenta" class="form-control" required>
+                                                <div class="invalid-feedback">Proporciona el Número de Cuenta</div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" class="subscribe btn btn-success btn-block shadow-sm" id="confirmarDatosBanco"> Confirmar Datos </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#metodoPago">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/dropzone.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="js/init.js"></script>
+        <script src="js/cart.js"></script>
 
 </body>
 
